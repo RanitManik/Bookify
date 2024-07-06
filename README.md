@@ -151,7 +151,7 @@ frontend-app-starter-template/
 │   └── vite.svg
 ├── README.md
 ├── src/
-│   ├── App.tsx
+│   ├── App.jsx
 │   ├── index.css
 │   └── main.tsx
 ├── tailwind.config.js
@@ -165,7 +165,7 @@ frontend-app-starter-template/
     - **vite.svg**: Vite logo used in the project.
 - **README.md**: Project documentation.
 - **src/**: Contains the main source code for the React application.
-    - **App.tsx**: The main App component.
+    - **App.jsx**: The main App component.
     - **index.css**: Global CSS styles.
     - **main.tsx**: The entry point of the application.
 - **tailwind.config.js**: Tailwind CSS configuration file.
