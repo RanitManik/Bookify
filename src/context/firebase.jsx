@@ -8,7 +8,10 @@ import {
   GoogleAuthProvider,
   signInWithPopup,
   onAuthStateChanged,
+  signOut,
 } from "firebase/auth";
+import { getFirestore, collection, addDoc } from "firebase/firestore";
+import { getStorage, uploadBytes, ref } from "firebase/storage";
 
 const Firebase = createContext(null);
 
@@ -23,37 +26,78 @@ const firebaseConfig = {
   measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID,
 };
 
-// eslint-disable-next-line react-refresh/only-export-components
 export const useFirebase = () => useContext(Firebase);
 
 // Initialize Firebase
 const firebaseApp = initializeApp(firebaseConfig);
-// eslint-disable-next-line no-unused-vars
 const analytics = getAnalytics(firebaseApp);
-
 const firebaseAuth = getAuth(firebaseApp);
-
 const googleProvider = new GoogleAuthProvider();
+const firestore = getFirestore(firebaseApp);
+const storage = getStorage(firebaseApp);
 
 export const FirebaseProvider = (props) => {
   const [user, setUser] = useState(null);
+  const [error, setError] = useState(null);
+
   useEffect(() => {
-    onAuthStateChanged(firebaseAuth, (user) => {
+    const unsubscribe = onAuthStateChanged(firebaseAuth, (user) => {
       if (user) setUser(user);
       else setUser(null);
     });
+    return () => unsubscribe();
   }, []);
 
-  const signUpUserWithEmailAndPassword = (email, password) => {
-    return createUserWithEmailAndPassword(firebaseAuth, email, password);
+  const signUpUserWithEmailAndPassword = async (email, password) => {
+    try {
+      await createUserWithEmailAndPassword(firebaseAuth, email, password);
+    } catch (error) {
+      setError(error.message);
+    }
   };
 
-  const signInUserWithEmailAndPassword = (email, password) => {
-    return signInWithEmailAndPassword(firebaseAuth, email, password);
+  const signInUserWithEmailAndPassword = async (email, password) => {
+    try {
+      await signInWithEmailAndPassword(firebaseAuth, email, password);
+    } catch (error) {
+      setError(error.message);
+    }
   };
 
-  const signInUserWithGoogle = () => {
-    return signInWithPopup(firebaseAuth, googleProvider);
+  const signInUserWithGoogle = async () => {
+    try {
+      await signInWithPopup(firebaseAuth, googleProvider);
+    } catch (error) {
+      setError(error.message);
+    }
+  };
+
+  const handleCreateNewListing = async (name, isbn, price, cover) => {
+    try {
+      const imgRef = ref(storage, `uploads/images/${Date.now()}-${cover.name}`);
+      const uploadResult = await uploadBytes(imgRef, cover);
+      await addDoc(collection(firestore, "books"), {
+        name,
+        isbn,
+        price,
+        imageURL: uploadResult.ref.fullPath,
+        userID: user.uid,
+        userEmail: user.email,
+        displayName: user.displayName,
+        photoURL: user.photoURL,
+      });
+    } catch (error) {
+      setError(error.message);
+    }
+  };
+
+  const handleSignOut = async () => {
+    try {
+      await signOut(firebaseAuth);
+      console.log("Sign out successfully");
+    } catch (error) {
+      console.error("Sign out error: ", error.message);
+    }
   };
 
   const isLoggedIn = !!user;
@@ -65,6 +109,10 @@ export const FirebaseProvider = (props) => {
         signInUserWithEmailAndPassword,
         signInUserWithGoogle,
         isLoggedIn,
+        handleCreateNewListing,
+        handleSignOut,
+        user,
+        error,
       }}
     >
       {props.children}

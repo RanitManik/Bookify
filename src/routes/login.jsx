@@ -3,7 +3,7 @@ import Background from "@/components/background.jsx";
 
 const Login = () => {
   return (
-    <Background>
+    <Background className="grid place-items-center">
       <LoginForm />
     </Background>
   );
