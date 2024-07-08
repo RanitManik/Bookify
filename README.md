@@ -14,9 +14,8 @@ Welcome to **Bookify**! This project is inspired by Piyush Garg's comprehensive 
 - [Getting Started](#getting-started)
     - [Prerequisites](#prerequisites)
     - [Installation](#installation)
-    - [Running the Development Server](#running-the-development-server)
-    - [Building for Production](#building-for-production)
-    - [Linting and Formatting](#linting-and-formatting)
+    - [Firebase Configuration](#firebase-configuration)
+    - [Available Scripts](#available-scripts)
 - [Project Structure](#project-structure)
 - [Contributing](#contributing)
 - [Contact](#contact)
@@ -77,63 +76,42 @@ Bookify utilizes the powerful combination of Firebase and React to offer users a
    yarn install
    ```
 
-### Running the Development Server
+## Firebase Configuration
 
-To start the development server, run:
+To configure Firebase for this project:
 
-```bash
-npm run dev
-```
+1. Go to the [Firebase Console](https://console.firebase.google.com/).
+2. Create a new project or use an existing one.
+3. Navigate to the project settings and locate your Firebase configuration.
+4. Copy the configuration details and replace the placeholders in your `.env.local` file.
 
-or
+## Available Scripts
 
-```bash
-yarn dev
-```
+In the project directory, you can run the following scripts:
 
-Open your browser and navigate to `http://localhost:5173` to see the application in action.
+### `npm run dev`
 
-### Building for Production
+Runs the app in development mode. Open [http://localhost:5173](http://localhost:5173) to view it in the browser.
 
-To build the application for production, run:
+### `npm run build`
 
-```bash
-npm run build
-```
+Builds the app for production to the `dist` folder. It correctly bundles React in production mode and optimizes the
+build for the best performance.
 
-or
+### `npm run lint`
 
-```bash
-yarn build
-```
+Lints the codebase using ESLint. This ensures your code adheres to specified linting rules and conventions. It
+checks `.js` and `.jsx` files, reports any unused disable directives, and sets the maximum number of warnings to 0.
 
-The built files will be located in the `dist` directory.
+### `npm run preview`
 
-### Linting and Formatting
+Previews the production build locally. Useful for testing the production build before deploying.
 
-To lint your code, run:
+### `npm run format`
 
-```bash
-npm run lint
-```
+Formats the codebase using Prettier. It targets all `.js` and `.jsx` files within the `src` directory to ensure
+consistent code formatting.
 
-or
-
-```bash
-yarn lint
-```
-
-To format your code, run:
-
-```bash
-npm run format
-```
-
-or
-
-```bash
-yarn format
-```
 
 ## Project Structure
 
