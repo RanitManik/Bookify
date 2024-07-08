@@ -33,7 +33,7 @@ export const Navigation = ({ initialSelected = "Home" }) => {
     { label: "Listing", to: "/listing" },
     // { label: "Products", to: "/register" },
     // { label: "Customers", to: "/login" },
-    { label: "Settings", to: "/" },
+    // { label: "Settings", to: "/" },
   ];
 
   return (
