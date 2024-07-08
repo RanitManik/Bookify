@@ -1,6 +1,6 @@
 const Background = ({ children }) => {
   return (
-    <div className="m-auto grid min-h-[100svh] max-w-[2000px]">{children}</div>
+    <div className="m-auto min-h-[90svh] max-w-[2000px] px-4">{children}</div>
   );
 };
 

@@ -10,8 +10,8 @@ import {
   onAuthStateChanged,
   signOut,
 } from "firebase/auth";
-import { getFirestore, collection, addDoc } from "firebase/firestore";
-import { getStorage, uploadBytes, ref } from "firebase/storage";
+import { getFirestore, collection, addDoc, getDocs } from "firebase/firestore";
+import { getStorage, uploadBytes, ref, getDownloadURL } from "firebase/storage";
 
 const Firebase = createContext(null);
 
@@ -42,8 +42,7 @@ export const FirebaseProvider = (props) => {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(firebaseAuth, (user) => {
-      if (user) setUser(user);
-      else setUser(null);
+      setUser(user || null);
     });
     return () => unsubscribe();
   }, []);
@@ -100,6 +99,14 @@ export const FirebaseProvider = (props) => {
     }
   };
 
+  const getListAllBooks = () => {
+    return getDocs(collection(firestore, "books"));
+  };
+
+  const getImageUrl = (path) => {
+    return getDownloadURL(ref(storage, path));
+  };
+
   const isLoggedIn = !!user;
 
   return (
@@ -113,9 +120,13 @@ export const FirebaseProvider = (props) => {
         handleSignOut,
         user,
         error,
+        getListAllBooks,
+        getImageUrl,
       }}
     >
       {props.children}
     </Firebase.Provider>
   );
 };
+
+export default FirebaseProvider;

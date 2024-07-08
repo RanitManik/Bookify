@@ -1,5 +1,5 @@
-import { SignupForm } from "@/components/signup-form.jsx";
-import Background from "@/components/background.jsx";
+import { SignupForm } from "@/components/SignupForm.jsx";
+import Background from "@/components/Background.jsx";
 
 const Register = () => {
   return (

@@ -1,5 +1,5 @@
-import { LoginForm } from "@/components/login-form.jsx";
-import Background from "@/components/background.jsx";
+import { LoginForm } from "@/components/LoginForm.jsx";
+import Background from "@/components/Background.jsx";
 
 const Login = () => {
   return (

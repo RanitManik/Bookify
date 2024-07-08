@@ -13,7 +13,6 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button.jsx";
 import { useFirebase } from "@/context/firebase.jsx";
-import { UserProfileIcon } from "@/components/userProfileIcon.jsx";
 
 const NavigationLink = ({ to, label, isSelected, onClick }) => (
   <Link
@@ -32,13 +31,13 @@ export const Navigation = ({ initialSelected = "Home" }) => {
   const navItems = [
     { label: "Home", to: "/" },
     { label: "Listing", to: "/listing" },
-    { label: "Products", to: "/register" },
-    { label: "Customers", to: "/login" },
+    // { label: "Products", to: "/register" },
+    // { label: "Customers", to: "/login" },
     { label: "Settings", to: "/" },
   ];
 
   return (
-    <header className="sticky top-0 flex h-16 items-center gap-4 border-b bg-background px-4 md:px-6">
+    <header className="sticky top-0 z-50 flex h-16 items-center gap-4 border-b bg-background/60 px-4 backdrop-blur-lg md:px-6">
       <nav className="hidden flex-col gap-6 text-lg font-medium md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6">
         <Link
           to="/"
