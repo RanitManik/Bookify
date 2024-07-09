@@ -83,6 +83,7 @@ export function SignupForm() {
                 id="password"
                 type="password"
                 required
+                placeholder="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
@@ -90,21 +91,21 @@ export function SignupForm() {
             <Button type="submit" className="w-full">
               Create an account
             </Button>
-            <div className="grid grid-cols-4 gap-2">
-              <Button onClick={signInUserWithGoogle} variant="secondary">
-                <assets.Google className="h-full" />
-              </Button>
-              <Button onClick={signInUserWithGithub} variant="secondary">
-                <assets.Github className="h-full" />
-              </Button>
-              <Button onClick={signInUserWithFacebook} variant="secondary">
-                <assets.Facebook className="h-full" />
-              </Button>
-              <Button onClick={signInUserWithTwitter} variant="secondary">
-                <assets.Twitter className="h-full" />
-              </Button>
-            </div>
           </form>
+          <div className="grid grid-cols-4 gap-2 mt-4">
+            <Button onClick={signInUserWithGoogle} variant="secondary">
+              <assets.Google className="h-full" />
+            </Button>
+            <Button onClick={signInUserWithGithub} variant="secondary">
+              <assets.Github className="h-full" />
+            </Button>
+            <Button onClick={signInUserWithFacebook} variant="secondary">
+              <assets.Facebook className="h-full" />
+            </Button>
+            <Button onClick={signInUserWithTwitter} variant="secondary">
+              <assets.Twitter className="h-full" />
+            </Button>
+          </div>
           <div className="mt-4 text-center text-sm">
             Already have an account?{" "}
             <Link to="/login" className="underline">
