@@ -34,7 +34,9 @@ export function CardForListingBooks(book) {
       />
       <CardHeader>
         <CardTitle className="line-clamp-1">{book?.name}</CardTitle>
-        <CardDescription>by {book.authorName}</CardDescription>
+        <CardDescription>
+          by {book.authorName ? book.authorName : book.displayName}
+        </CardDescription>
       </CardHeader>
       <CardContent>
         <p className="line-clamp-3 text-sm text-foreground/90">
@@ -54,7 +56,7 @@ export function CardForListingBooks(book) {
             aria-label="MRP price"
           >
             {book.discount ? (
-              <>Rs. {(book.price * (1 + (book.discount / 100))).toFixed(0)}</>
+              <>Rs. {(book.price * (1 + book.discount / 100)).toFixed(0)}</>
             ) : (
               <>Rs. {(book.price * 1.4).toFixed(0)}</>
             )}

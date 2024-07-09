@@ -92,7 +92,7 @@ export function SignupForm() {
               Create an account
             </Button>
           </form>
-          <div className="grid grid-cols-4 gap-2 mt-4">
+          <div className="mt-4 grid grid-cols-4 gap-2">
             <Button onClick={signInUserWithGoogle} variant="secondary">
               <assets.Google className="h-full" />
             </Button>
