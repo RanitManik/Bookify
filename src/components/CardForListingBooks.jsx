@@ -34,7 +34,7 @@ export function CardForListingBooks(book) {
       />
       <CardHeader>
         <CardTitle className="line-clamp-1">{book?.name}</CardTitle>
-        <CardDescription>by {book.displayName}</CardDescription>
+        <CardDescription>by {book.authorName}</CardDescription>
       </CardHeader>
       <CardContent>
         <p className="line-clamp-3 text-sm text-foreground/90">
@@ -43,7 +43,7 @@ export function CardForListingBooks(book) {
           ) : (
             <>
               This book has a title {book?.name} and this book was written by{" "}
-              {book?.displayName}. It is being sold by {book?.displayName} and
+              {book?.authorName}. It is being sold by {book?.displayName} and
               costs Rs.{book?.price}.
             </>
           )}
@@ -51,10 +51,10 @@ export function CardForListingBooks(book) {
         <div className="mt-2">
           <span
             className="text-muted-foreground/90 line-through"
-            aria-label="original price"
+            aria-label="MRP price"
           >
             {book.discount ? (
-              <>Rs. {(book.price * (book.discount / 100)).toFixed(0)}</>
+              <>Rs. {(book.price * (1 + (book.discount / 100))).toFixed(0)}</>
             ) : (
               <>Rs. {(book.price * 1.4).toFixed(0)}</>
             )}

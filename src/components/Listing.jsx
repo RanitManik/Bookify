@@ -157,7 +157,7 @@ export function ListingForm() {
             </div>
             <div className="grid gap-4 sm:grid-cols-2">
               <div className="grid gap-2">
-                <Label htmlFor="price">Price</Label>
+                <Label htmlFor="price">Price (MRP)</Label>
                 <Input
                   id="price"
                   onChange={(e) => setPrice(e.target.value)}

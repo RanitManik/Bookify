@@ -98,22 +98,9 @@ export const FirebaseProvider = (props) => {
     }
   };
 
-  const handleCreateNewListing = async ({
-    name,
-    authorName,
-    isbn10,
-    isbn13,
-    price,
-    discount,
-    coverPic,
-    description,
-    authorDescription,
-    itemWeight,
-    pages,
-    language,
-    countryOfOrigin,
-  }) => {
+  const handleCreateNewListing = async (listingData) => {
     try {
+      const { coverPic, ...rest } = listingData;
       // Upload cover image to Firebase Storage
       const imgRef = ref(
         storage,
@@ -123,23 +110,12 @@ export const FirebaseProvider = (props) => {
 
       // Add book listing to Firestore
       await addDoc(collection(firestore, "books"), {
-        name,
-        authorName,
-        isbn10,
-        isbn13,
-        price,
-        discount,
+        ...rest,
         imageURL: uploadResult.ref.fullPath,
         userID: user.uid,
         userEmail: user.email,
         displayName: user.displayName,
         photoURL: user.photoURL,
-        description,
-        authorDescription,
-        itemWeight,
-        pages,
-        language,
-        countryOfOrigin,
       });
 
       console.log("Listing created successfully");
