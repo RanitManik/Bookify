@@ -1,5 +1,4 @@
 <div align="center">
-  <img width="100px" src="https://www.svgrepo.com/show/500068/library.svg"/>
   <h1>Bookify</h1>
 </div>
 
