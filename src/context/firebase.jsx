@@ -12,6 +12,7 @@ import {
   TwitterAuthProvider,
   FacebookAuthProvider,
   signOut,
+  updateProfile,
 } from "firebase/auth";
 import { getFirestore, collection, addDoc, getDocs } from "firebase/firestore";
 import { getStorage, uploadBytes, ref, getDownloadURL } from "firebase/storage";
@@ -53,10 +54,26 @@ export const FirebaseProvider = (props) => {
     return () => unsubscribe();
   }, []);
 
-  const signUpUserWithEmailAndPassword = async (email, password) => {
+  const signUpUserWithEmailAndPassword = async (
+    email,
+    password,
+    displayName,
+  ) => {
     try {
-      await createUserWithEmailAndPassword(firebaseAuth, email, password);
+      const userCredential = await createUserWithEmailAndPassword(
+        firebaseAuth,
+        email,
+        password,
+      );
+      if (userCredential && userCredential.user) {
+        const user = userCredential.user;
+        await updateProfile(user, { displayName });
+        console.log("Successfully Signed up!");
+      } else {
+        throw new Error("User credential is undefined");
+      }
     } catch (error) {
+      console.error("Error signing up:", error);
       setError(error.message);
     }
   };
@@ -134,6 +151,18 @@ export const FirebaseProvider = (props) => {
     }
   };
 
+  const handleUserProfileUpdate = async ({ details }) => {
+    try {
+      if (!firebaseAuth.currentUser) {
+        throw new Error("No authenticated user");
+      }
+      await updateProfile(firebaseAuth.currentUser, { ...details });
+      console.log("User profile updated successfully");
+    } catch (error) {
+      console.error("Error updating profile:", error.message);
+    }
+  };
+
   const getListAllBooks = () => {
     return getDocs(collection(firestore, "books"));
   };
@@ -160,6 +189,7 @@ export const FirebaseProvider = (props) => {
         error,
         getListAllBooks,
         getImageUrl,
+        handleUserProfileUpdate,
       }}
     >
       {props.children}

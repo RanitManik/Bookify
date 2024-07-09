@@ -14,6 +14,8 @@ import { useEffect, useState } from "react";
 import { useFirebase } from "@/context/firebase.jsx";
 
 export function SignupForm() {
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -34,12 +36,8 @@ export function SignupForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const userCredential = await signUpUserWithEmailAndPassword(
-        email,
-        password,
-      );
-      const user = userCredential.user;
-      console.log("Successfully Signed up!", user);
+      const displayName = `${firstName} ${lastName}`;
+      await signUpUserWithEmailAndPassword(email, password, displayName);
     } catch (error) {
       console.error("Error signing up:", error);
     }
@@ -59,11 +57,23 @@ export function SignupForm() {
             <div className="grid grid-cols-2 gap-4">
               <div className="grid gap-2">
                 <Label htmlFor="first-name">First name</Label>
-                <Input id="first-name" placeholder="Max" required />
+                <Input
+                  id="first-name"
+                  placeholder="Max"
+                  required
+                  value={firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
+                />
               </div>
               <div className="grid gap-2">
                 <Label htmlFor="last-name">Last name</Label>
-                <Input id="last-name" placeholder="Robinson" required />
+                <Input
+                  id="last-name"
+                  placeholder="Robinson"
+                  required
+                  value={lastName}
+                  onChange={(e) => setLastName(e.target.value)}
+                />
               </div>
             </div>
             <div className="grid gap-2">
@@ -107,7 +117,7 @@ export function SignupForm() {
             </Button>
           </div>
           <div className="mt-4 text-center text-sm">
-            Already have an account?{" "}
+            Already have an account?
             <Link to="/login" className="underline">
               Sign in
             </Link>
