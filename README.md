@@ -1,6 +1,6 @@
 <h1>Bookify</h1>
 
-Welcome to Bookify! This project, inspired by Piyush Garg's comprehensive Firebase with React course, leverages the power of Firebase and React to deliver a seamless platform for book transactions. Bookify is designed with a focus on user experience and efficiency, utilizing Firestore for robust and scalable data storage. As a serverless application, Bookify offers unparalleled flexibility and scalability, making it an ideal choice for users seeking a modern and efficient book trading solution.
+Welcome to **Bookify**! This project, inspired by [Piyush Garg's comprehensive Firebase with React course](https://www.youtube.com/playlist?list=PLinedj3B30sCw8Qjrct1DRglx4hWQx83C), leverages the power of **Firebase** and **React** to deliver a seamless platform for book transactions. Bookify is designed with a focus on user experience and efficiency, utilizing **Firestore** for robust and scalable data storage. As a serverless application, Bookify offers unparalleled flexibility and scalability, making it an ideal choice for users seeking a modern and efficient book trading solution. Additionally, the integration of **shadcn** ensures a polished and dynamic user interface, enhancing the overall experience.
 
 ## Table of Contents
 
