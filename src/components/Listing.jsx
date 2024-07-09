@@ -63,7 +63,7 @@ export function ListingForm() {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <form onSubmit={handleSubmit} className="grid gap-4">
+          <form onSubmit={handleSubmit} className="grid gap-6">
             <div className="grid gap-4 sm:grid-cols-2">
               <div className="grid gap-2">
                 <Label htmlFor="book-name">Book Name</Label>
@@ -111,10 +111,11 @@ export function ListingForm() {
                 />
               </div>
             </div>
-            <div className="grid gap-4 md:grid-cols-2">
+            <div className="grid gap-4">
               <div className="grid gap-2">
                 <Label htmlFor="book-description">Product Description</Label>
                 <Textarea
+                  rows="4"
                   id="book-description"
                   onChange={(e) => setDescription(e.target.value)}
                   value={description}
@@ -124,6 +125,7 @@ export function ListingForm() {
               <div className="grid gap-2">
                 <Label htmlFor="author-description">About the Author</Label>
                 <Textarea
+                  rows="4"
                   id="author-description"
                   onChange={(e) => setAuthorDescription(e.target.value)}
                   value={authorDescription}
