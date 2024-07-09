@@ -1,5 +1,5 @@
 <div align="center">
-  <img height="70px" src="https://skillicons.dev/icons?i=firebase,react,tailwind" alt="Technology Icons">
+  <img width="100px" src="https://www.svgrepo.com/show/500068/library.svg"/>
   <h1>Bookify</h1>
 </div>
 
