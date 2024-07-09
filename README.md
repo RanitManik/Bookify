@@ -42,6 +42,9 @@ Bookify utilizes the powerful combination of Firebase and React to offer users a
 - **React**: A powerful JavaScript library for building user interfaces.
 - **Firebase**: A comprehensive app development platform for managing databases, authentication, and hosting.
 - **Tailwind CSS**: A utility-first CSS framework for rapid UI development.
+- **Shadcn/UI**: A UI component library for building beautiful interfaces.
+- **JavaScript**: The programming language that powers the web.
+- **PostCSS**: A tool for transforming CSS with JavaScript plugins.
 - **ESLint**: Code linting to maintain consistent code quality.
 - **Prettier**: Code formatting to ensure a consistent code style.
 
