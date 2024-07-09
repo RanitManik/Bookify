@@ -9,6 +9,8 @@ const Home = () => {
   const { user } = useFirebase();
   const navigate = useNavigate();
 
+  // TODO: Implement loader where needed
+
   useEffect(() => {
     if (!user) {
       navigate("/login");

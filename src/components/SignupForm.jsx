@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { assets } from "../assets/assets.js";
 import {
   Card,
   CardContent,
@@ -16,8 +17,14 @@ export function SignupForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const { signUpUserWithEmailAndPassword, signInUserWithGoogle, isLoggedIn } =
-    useFirebase();
+  const {
+    signUpUserWithEmailAndPassword,
+    signInUserWithGoogle,
+    signInUserWithGithub,
+    signInUserWithFacebook,
+    signInUserWithTwitter,
+    isLoggedIn,
+  } = useFirebase();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -83,13 +90,20 @@ export function SignupForm() {
             <Button type="submit" className="w-full">
               Create an account
             </Button>
-            <Button
-              onClick={signInUserWithGoogle}
-              variant="outline"
-              className="w-full"
-            >
-              Sign up with Google
-            </Button>
+            <div className="grid grid-cols-4 gap-2">
+              <Button onClick={signInUserWithGoogle} variant="secondary">
+                <assets.Google className="h-full" />
+              </Button>
+              <Button onClick={signInUserWithGithub} variant="secondary">
+                <assets.Github className="h-full" />
+              </Button>
+              <Button onClick={signInUserWithFacebook} variant="secondary">
+                <assets.Facebook className="h-full" />
+              </Button>
+              <Button onClick={signInUserWithTwitter} variant="secondary">
+                <assets.Twitter className="h-full" />
+              </Button>
+            </div>
           </form>
           <div className="mt-4 text-center text-sm">
             Already have an account?{" "}

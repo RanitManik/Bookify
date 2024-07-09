@@ -11,10 +11,17 @@ import { Label } from "@/components/ui/label";
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useFirebase } from "@/context/firebase.jsx";
+import { assets } from "@/assets/assets.js";
 
 export function LoginForm() {
-  const { signInUserWithEmailAndPassword, signInUserWithGoogle, isLoggedIn } =
-    useFirebase();
+  const {
+    signInUserWithEmailAndPassword,
+    signInUserWithGoogle,
+    signInUserWithGithub,
+    signInUserWithFacebook,
+    signInUserWithTwitter,
+    isLoggedIn,
+  } = useFirebase();
   const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
@@ -78,13 +85,20 @@ export function LoginForm() {
             <Button type="submit" className="w-full">
               Login
             </Button>
-            <Button
-              onClick={signInUserWithGoogle}
-              variant="outline"
-              className="w-full"
-            >
-              Login with Google
-            </Button>
+            <div className="grid grid-cols-4 gap-2">
+              <Button onClick={signInUserWithGoogle} variant="secondary">
+                <assets.Google className="h-full" />
+              </Button>
+              <Button onClick={signInUserWithGithub} variant="secondary">
+                <assets.Github className="h-full" />
+              </Button>
+              <Button onClick={signInUserWithFacebook} variant="secondary">
+                <assets.Facebook className="h-full" />
+              </Button>
+              <Button onClick={signInUserWithTwitter} variant="secondary">
+                <assets.Twitter className="h-full" />
+              </Button>
+            </div>
           </form>
           <div className="mt-4 text-center text-sm">
             Don&apos;t have an account?{" "}

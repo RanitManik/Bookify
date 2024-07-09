@@ -8,6 +8,9 @@ import {
   GoogleAuthProvider,
   signInWithPopup,
   onAuthStateChanged,
+  GithubAuthProvider,
+  TwitterAuthProvider,
+  FacebookAuthProvider,
   signOut,
 } from "firebase/auth";
 import { getFirestore, collection, addDoc, getDocs } from "firebase/firestore";
@@ -33,6 +36,9 @@ const firebaseApp = initializeApp(firebaseConfig);
 const analytics = getAnalytics(firebaseApp);
 const firebaseAuth = getAuth(firebaseApp);
 const googleProvider = new GoogleAuthProvider();
+const githubProvider = new GithubAuthProvider();
+const twitterProvider = new TwitterAuthProvider();
+const facebookProvider = new FacebookAuthProvider();
 const firestore = getFirestore(firebaseApp);
 const storage = getStorage(firebaseApp);
 
@@ -70,22 +76,75 @@ export const FirebaseProvider = (props) => {
       setError(error.message);
     }
   };
-
-  const handleCreateNewListing = async (name, isbn, price, cover) => {
+  const signInUserWithGithub = async () => {
     try {
-      const imgRef = ref(storage, `uploads/images/${Date.now()}-${cover.name}`);
-      const uploadResult = await uploadBytes(imgRef, cover);
+      await signInWithPopup(firebaseAuth, githubProvider);
+    } catch (error) {
+      setError(error.message);
+    }
+  };
+  const signInUserWithTwitter = async () => {
+    try {
+      await signInWithPopup(firebaseAuth, twitterProvider);
+    } catch (error) {
+      setError(error.message);
+    }
+  };
+  const signInUserWithFacebook = async () => {
+    try {
+      await signInWithPopup(firebaseAuth, facebookProvider);
+    } catch (error) {
+      setError(error.message);
+    }
+  };
+
+  const handleCreateNewListing = async ({
+    name,
+    authorName,
+    isbn10,
+    isbn13,
+    price,
+    discount,
+    coverPic,
+    description,
+    authorDescription,
+    itemWeight,
+    pages,
+    language,
+    countryOfOrigin,
+  }) => {
+    try {
+      // Upload cover image to Firebase Storage
+      const imgRef = ref(
+        storage,
+        `uploads/images/${Date.now()}-${coverPic.name}`,
+      );
+      const uploadResult = await uploadBytes(imgRef, coverPic);
+
+      // Add book listing to Firestore
       await addDoc(collection(firestore, "books"), {
         name,
-        isbn,
+        authorName,
+        isbn10,
+        isbn13,
         price,
+        discount,
         imageURL: uploadResult.ref.fullPath,
         userID: user.uid,
         userEmail: user.email,
         displayName: user.displayName,
         photoURL: user.photoURL,
+        description,
+        authorDescription,
+        itemWeight,
+        pages,
+        language,
+        countryOfOrigin,
       });
+
+      console.log("Listing created successfully");
     } catch (error) {
+      console.error("Error creating listing:", error);
       setError(error.message);
     }
   };
@@ -115,6 +174,9 @@ export const FirebaseProvider = (props) => {
         signUpUserWithEmailAndPassword,
         signInUserWithEmailAndPassword,
         signInUserWithGoogle,
+        signInUserWithGithub,
+        signInUserWithFacebook,
+        signInUserWithTwitter,
         isLoggedIn,
         handleCreateNewListing,
         handleSignOut,
