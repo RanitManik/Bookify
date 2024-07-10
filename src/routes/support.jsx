@@ -1,11 +1,11 @@
 import { Navigation } from "@/components/navigation.jsx";
-import Background from "@/components/Background.jsx";
-import { ListingForm } from "@/components/Listing.jsx";
+import { useEffect } from "react";
 import { useFirebase } from "@/context/firebase.jsx";
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import Background from "@/components/Background.jsx";
+import SupportGuide from "@/components/SupportGuide.jsx";
 
-const Listing = () => {
+const Support = () => {
   const { user } = useFirebase();
   const navigate = useNavigate();
 
@@ -19,12 +19,11 @@ const Listing = () => {
 
   return (
     <>
-      <Navigation initialSelected="Listing" />
+      <Navigation initialSelected="Support" />
       <Background>
-        <ListingForm />
+        <SupportGuide />
       </Background>
     </>
   );
 };
-
-export default Listing;
+export default Support;

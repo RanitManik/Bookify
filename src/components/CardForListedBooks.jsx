@@ -10,7 +10,7 @@ import {
 import { useFirebase } from "@/context/firebase.jsx";
 import { useEffect, useState } from "react";
 
-export function CardForListingBooks(book) {
+export function CardForListedBooks(book) {
   const { getImageUrl } = useFirebase();
   const [url, setUrl] = useState("");
 
@@ -25,8 +25,7 @@ export function CardForListingBooks(book) {
   }, [book.imageURL, getImageUrl]);
 
   return (
-    <Card className="max-w-[350px] overflow-hidden bg-muted/30">
-      {/* TODO 1: Make an icon for display the image in new tab on hover of an image */}
+    <Card className="max-w-[350px] overflow-hidden">
       <img
         className={`h-[250px] w-full bg-muted object-contain p-2 sm:p-4 ${url ? "" : "animate-pulse"}`}
         src={url}

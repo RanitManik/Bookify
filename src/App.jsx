@@ -3,6 +3,8 @@ import Home from "@/routes/home.jsx";
 import Register from "@/routes/register.jsx";
 import Login from "@/routes/login.jsx";
 import Listing from "@/routes/listing.jsx";
+import Support from "@/routes/support.jsx";
+import Setting from "@/routes/setting.jsx";
 
 function App() {
   return (
@@ -11,6 +13,8 @@ function App() {
       <Route path="/register" element={<Register />} />
       <Route path="/login" element={<Login />} />
       <Route path="/listing" element={<Listing />} />
+      <Route path="/support" element={<Support />} />
+      <Route path="/setting" element={<Setting />} />
     </Routes>
   );
 }

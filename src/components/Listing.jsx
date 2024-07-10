@@ -111,6 +111,7 @@ export function ListingForm() {
                 />
               </div>
             </div>
+            {/* TODO: make a description word limit */}
             <div className="grid gap-4">
               <div className="grid gap-2">
                 <Label htmlFor="book-description">Product Description</Label>

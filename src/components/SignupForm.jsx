@@ -1,3 +1,5 @@
+import { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { assets } from "../assets/assets.js";
 import {
@@ -9,8 +11,6 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Link, useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
 import { useFirebase } from "@/context/firebase.jsx";
 
 export function SignupForm() {
@@ -117,7 +117,7 @@ export function SignupForm() {
             </Button>
           </div>
           <div className="mt-4 text-center text-sm">
-            Already have an account?
+            Already have an account?{" "}
             <Link to="/login" className="underline">
               Sign in
             </Link>
