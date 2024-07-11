@@ -3,7 +3,6 @@ import { ReactComponent as Google } from "./google.svg";
 import { ReactComponent as Github } from "./github.svg";
 import { ReactComponent as Facebook } from "./facebook.svg";
 import { ReactComponent as Twitter } from "./twitter.svg";
-import { ReactComponent as Progress } from "./progress.svg";
 
 export const assets = {
   Logo,
@@ -11,5 +10,4 @@ export const assets = {
   Github,
   Facebook,
   Twitter,
-  Progress,
 };

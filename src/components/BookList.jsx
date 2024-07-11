@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useFirebase } from "@/context/firebase.jsx";
 import { CardForListedBooks } from "@/components/CardForListedBooks.jsx";
-import { assets } from "../assets/assets.js";
+import { LoaderCircle } from "lucide-react";
 
 const BookList = () => {
   const { getListAllBooks } = useFirebase();
@@ -16,7 +16,7 @@ const BookList = () => {
   if (books.length === 0) {
     return (
       <div className="grid min-h-[80svh] place-items-center">
-        <assets.Progress className="h-20 w-20" />
+        <LoaderCircle className="h-20 w-20 animate-spin" />
       </div>
     );
   }
