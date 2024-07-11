@@ -1,4 +1,4 @@
-import { useFirebase } from "@/context/firebase.jsx";
+import { useFirebase } from "@/context/firebase.context.jsx";
 import { CircleUser } from "lucide-react";
 
 export const WelcomeComponent = () => {

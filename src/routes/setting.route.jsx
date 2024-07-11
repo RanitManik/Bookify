@@ -1,6 +1,6 @@
 import { NavigationComponent } from "@/components/navigation.component.jsx";
 import { useNavigate } from "react-router-dom";
-import { useFirebase } from "@/context/firebase.jsx";
+import { useFirebase } from "@/context/firebase.context.jsx";
 import { useEffect } from "react";
 import SettingComponent from "@/components/Setting.component.jsx";
 

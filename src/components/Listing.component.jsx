@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { useFirebase } from "@/context/firebase.jsx";
+import { useFirebase } from "@/context/firebase.context.jsx";
 import { FileInputComponent } from "@/components/FileInput.component.jsx";
 import { Textarea } from "@/components/ui/textarea.jsx";
 import { CountrySelectorComponent } from "@/components/CountrySelect.component.jsx";

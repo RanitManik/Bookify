@@ -25,9 +25,9 @@ import {
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 import { initializeAppCheck, ReCaptchaV3Provider } from "firebase/app-check";
 
-const Firebase = createContext(null);
+const FirebaseContext = createContext(null);
 
-// Firebase configuration
+// FirebaseContext configuration
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
   authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
@@ -38,9 +38,9 @@ const firebaseConfig = {
   measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID,
 };
 
-export const useFirebase = () => useContext(Firebase);
+export const useFirebase = () => useContext(FirebaseContext);
 
-// Initialize Firebase
+// Initialize FirebaseContext
 const firebaseApp = initializeApp(firebaseConfig);
 const firebaseAuth = getAuth(firebaseApp);
 const googleProvider = new GoogleAuthProvider();
@@ -115,7 +115,7 @@ export const FirebaseProvider = (props) => {
   const handleCreateNewListing = async (listingData) => {
     try {
       const { coverPic, ...rest } = listingData;
-      // Upload cover image to Firebase Storage
+      // Upload cover image to FirebaseContext Storage
       const imgRef = ref(
         storage,
         `uploads/images/${Date.now()}-${coverPic.name}`,
@@ -176,7 +176,7 @@ export const FirebaseProvider = (props) => {
   const isLoggedIn = !!user;
 
   return (
-    <Firebase.Provider
+    <FirebaseContext.Provider
       value={{
         signUpUserWithEmailAndPassword,
         signInUserWithEmailAndPassword,
@@ -196,7 +196,7 @@ export const FirebaseProvider = (props) => {
       }}
     >
       {props.children}
-    </Firebase.Provider>
+    </FirebaseContext.Provider>
   );
 };
 

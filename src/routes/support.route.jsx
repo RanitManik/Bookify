@@ -1,6 +1,6 @@
 import { NavigationComponent } from "@/components/navigation.component.jsx";
 import { useEffect } from "react";
-import { useFirebase } from "@/context/firebase.jsx";
+import { useFirebase } from "@/context/firebase.context.jsx";
 import { useNavigate } from "react-router-dom";
 import BackgroundComponent from "@/components/Background.component.jsx";
 import SupportGuideComponent from "@/components/SupportGuide.component.jsx";

@@ -1,6 +1,6 @@
 <h1>Bookify</h1>
 
-Welcome to **Bookify**! This project, inspired by [Piyush Garg's comprehensive Firebase with React course](https://www.youtube.com/playlist?list=PLinedj3B30sCw8Qjrct1DRglx4hWQx83C), leverages the power of **Firebase** and **React** to deliver a seamless platform for book transactions. Bookify is designed with a focus on user experience and efficiency, utilizing **Firestore** for robust and scalable data storage. As a serverless application, Bookify offers unparalleled flexibility and scalability, making it an ideal choice for users seeking a modern and efficient book trading solution. Additionally, the integration of **shadcn** ensures a polished and dynamic user interface, enhancing the overall experience.
+Welcome to **Bookify**! This project, inspired by [Piyush Garg's comprehensive FirebaseContext with React course](https://www.youtube.com/playlist?list=PLinedj3B30sCw8Qjrct1DRglx4hWQx83C), leverages the power of **FirebaseContext** and **React** to deliver a seamless platform for book transactions. Bookify is designed with a focus on user experience and efficiency, utilizing **Firestore** for robust and scalable data storage. As a serverless application, Bookify offers unparalleled flexibility and scalability, making it an ideal choice for users seeking a modern and efficient book trading solution. Additionally, the integration of **shadcn** ensures a polished and dynamic user interface, enhancing the overall experience.
 
 ## Table of Contents
 
@@ -11,7 +11,7 @@ Welcome to **Bookify**! This project, inspired by [Piyush Garg's comprehensive F
 - [Getting Started](#getting-started)
     - [Prerequisites](#prerequisites)
     - [Installation](#installation)
-    - [Firebase Configuration](#firebase-configuration)
+    - [FirebaseContext Configuration](#firebase-configuration)
     - [Available Scripts](#available-scripts)
 - [Project Structure](#project-structure)
 - [Contributing](#contributing)
@@ -22,13 +22,13 @@ Welcome to **Bookify**! This project, inspired by [Piyush Garg's comprehensive F
 
 ### Why Bookify?
 
-Bookify utilizes the powerful combination of Firebase and React to offer users a seamless platform for buying and selling books. The app is designed with a focus on user experience and efficiency, using Firestore database to store information. It operates as a serverless application, providing flexibility and scalability for users.
+Bookify utilizes the powerful combination of FirebaseContext and React to offer users a seamless platform for buying and selling books. The app is designed with a focus on user experience and efficiency, using Firestore database to store information. It operates as a serverless application, providing flexibility and scalability for users.
 
 ### Technologies Used
 
 <p>
    <img src="https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB" alt="React" height="30px">
-   <img src="https://img.shields.io/badge/firebase-%23039BE5.svg?style=for-the-badge&logo=firebase&logoColor=white" alt="Firebase" height="30px">
+   <img src="https://img.shields.io/badge/firebase-%23039BE5.svg?style=for-the-badge&logo=firebase&logoColor=white" alt="FirebaseContext" height="30px">
    <img src="https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="TailwindCSS" height="30px">
    <img src="https://img.shields.io/badge/shadcn%2Fui-000?style=for-the-badge&logo=shadcnui&logoColor=white" alt="ShadcnUI" height="30px">
    <img src="https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E" alt="JavaScript" height="30px">
@@ -40,7 +40,7 @@ Bookify utilizes the powerful combination of Firebase and React to offer users a
 ### Features
 
 - **React**: A powerful JavaScript library for building user interfaces.
-- **Firebase**: A comprehensive app development platform for managing databases, authentication, and hosting.
+- **FirebaseContext**: A comprehensive app development platform for managing databases, authentication, and hosting.
 - **Tailwind CSS**: A utility-first CSS framework for rapid UI development.
 - **Shadcn/UI**: A UI component library for building beautiful interfaces.
 - **JavaScript**: The programming language that powers the web.
@@ -76,13 +76,13 @@ Bookify utilizes the powerful combination of Firebase and React to offer users a
    yarn install
    ```
 
-## Firebase Configuration
+## FirebaseContext Configuration
 
-To configure Firebase for this project:
+To configure FirebaseContext for this project:
 
-1. Go to the [Firebase Console](https://console.firebase.google.com/).
+1. Go to the [FirebaseContext Console](https://console.firebase.google.com/).
 2. Create a new project or use an existing one.
-3. Navigate to the project settings and locate your Firebase configuration.
+3. Navigate to the project settings and locate your FirebaseContext configuration.
 4. Copy the configuration details and replace the placeholders in your `.env.local` file.
 
 ## Available Scripts
@@ -180,7 +180,7 @@ _Feel free to reach out if you have questions or just want to chat about web adv
 
 ## Acknowledgments
 
-- [Piyush Garg's Firebase with React Course](https://www.youtube.com/playlist?list=PLinedj3B30sCw8Qjrct1DRglx4hWQx83C)
+- [Piyush Garg's FirebaseContext with React Course](https://www.youtube.com/playlist?list=PLinedj3B30sCw8Qjrct1DRglx4hWQx83C)
 - [Markdown Badges](https://github.com/Ileriayo/markdown-badges)
 - [shields.io Badges](https://shields.io/)
 - [Skill Icons](https://github.com/tandpfun/skill-icons)

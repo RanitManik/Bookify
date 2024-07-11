@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useFirebase } from "@/context/firebase.jsx";
+import { useFirebase } from "@/context/firebase.context.jsx";
 import { CardForListedBooksComponent } from "@/components/CardForListedBooks.component.jsx";
 import { LoaderCircle } from "lucide-react";
 

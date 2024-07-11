@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { useFirebase } from "@/context/firebase.jsx";
+import { useFirebase } from "@/context/firebase.context.jsx";
 
 export function SignupFormComponent() {
   const [firstName, setFirstName] = useState("");
@@ -44,7 +44,7 @@ export function SignupFormComponent() {
   };
 
   return (
-    <div className="grid min-h-[min(95svh,_1080px)] place-items-center">
+    <div className="grid min-h-[min(95svh,_1080px)] place-items-center duration-200 animate-in fade-in">
       <Card className="mx-auto w-full max-w-sm self-center">
         <CardHeader>
           <CardTitle className="text-xl">Sign Up</CardTitle>
