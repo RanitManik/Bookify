@@ -16,6 +16,7 @@ import {
 } from "firebase/auth";
 import { getFirestore, collection, addDoc, getDocs } from "firebase/firestore";
 import { getStorage, uploadBytes, ref, getDownloadURL } from "firebase/storage";
+import { initializeAppCheck, ReCaptchaV3Provider } from "firebase/app-check";
 
 const Firebase = createContext(null);
 
@@ -34,7 +35,6 @@ export const useFirebase = () => useContext(Firebase);
 
 // Initialize Firebase
 const firebaseApp = initializeApp(firebaseConfig);
-const analytics = getAnalytics(firebaseApp);
 const firebaseAuth = getAuth(firebaseApp);
 const googleProvider = new GoogleAuthProvider();
 const githubProvider = new GithubAuthProvider();
@@ -42,6 +42,16 @@ const twitterProvider = new TwitterAuthProvider();
 const facebookProvider = new FacebookAuthProvider();
 const firestore = getFirestore(firebaseApp);
 const storage = getStorage(firebaseApp);
+
+// enable firebase analytics
+const analytics = getAnalytics(firebaseApp);
+
+// enable firebase appCheck
+const appCheck = initializeAppCheck(firebaseApp, {
+  provider: new ReCaptchaV3Provider(import.meta.env.VITE_RECAPTCHA_SITE_KEY),
+
+  isTokenAutoRefreshEnabled: true
+});
 
 export const FirebaseProvider = (props) => {
   const [user, setUser] = useState(null);
