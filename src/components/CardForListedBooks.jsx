@@ -29,11 +29,15 @@ export function CardForListedBooks(book) {
 
   return (
     <Card className="max-w-[350px] overflow-hidden">
-      <img
+      <div
         className={`h-[250px] w-full bg-muted object-contain p-2 sm:p-4 ${url ? "" : "animate-pulse"}`}
-        src={url}
-        alt={book?.name || "Book Image"}
-      />
+      >
+        <img
+          className="m-auto h-full"
+          src={url}
+          alt={!url ? "" : "Book Image"}
+        />
+      </div>
       <CardHeader>
         <CardTitle className="line-clamp-1">{book?.name}</CardTitle>
         <CardDescription>

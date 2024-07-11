@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useFirebase } from "@/context/firebase.jsx";
-import { assets } from "@/assets/assets.js";
+import { LoaderCircle } from "lucide-react";
 
 const BookDetail = () => {
   const { getBookById } = useFirebase();
@@ -18,7 +18,9 @@ const BookDetail = () => {
   if (!data)
     return (
       <div className="grid min-h-[80svh] place-items-center">
-        <assets.Progress className="h-20 w-20" />
+        <div className="grid min-h-[80svh] place-items-center">
+          <LoaderCircle className="h-20 w-20 animate-spin" />
+        </div>
       </div>
     );
 

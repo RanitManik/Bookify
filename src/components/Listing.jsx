@@ -71,6 +71,7 @@ export function ListingForm() {
                   id="book-name"
                   onChange={(e) => setName(e.target.value)}
                   value={name}
+                  maxlength="30"
                   type="text"
                   placeholder="The Jungle Book"
                   required
@@ -83,6 +84,7 @@ export function ListingForm() {
                   onChange={(e) => setAuthorName(e.target.value)}
                   value={authorName}
                   type="text"
+                  maxlength="30"
                   placeholder="Rudyard Kipling"
                   required
                 />
@@ -95,6 +97,7 @@ export function ListingForm() {
                   id="isbn-10"
                   onChange={(e) => setIsbn10(e.target.value)}
                   value={isbn10}
+                  maxlength="20"
                   type="text"
                   placeholder="8119555600"
                   required
@@ -106,6 +109,7 @@ export function ListingForm() {
                   id="isbn-13"
                   onChange={(e) => setIsbn13(e.target.value)}
                   value={isbn13}
+                  maxlength="20"
                   type="text"
                   placeholder="978-8119555606"
                 />
@@ -116,7 +120,7 @@ export function ListingForm() {
                 <Label htmlFor="book-description">Product Description</Label>
                 <Textarea
                   rows="4"
-                  maxLength="500"
+                  maxlength="500"
                   id="book-description"
                   onChange={(e) => setDescription(e.target.value)}
                   value={description}
@@ -127,7 +131,7 @@ export function ListingForm() {
                 <Label htmlFor="author-description">About the Author</Label>
                 <Textarea
                   rows="4"
-                  maxLength="500"
+                  maxlength="500"
                   id="author-description"
                   onChange={(e) => setAuthorDescription(e.target.value)}
                   value={authorDescription}
@@ -137,11 +141,12 @@ export function ListingForm() {
             </div>
             <div className="grid gap-4 sm:grid-cols-2">
               <div className="grid gap-2">
-                <Label htmlFor="item-weight">Item Weight</Label>
+                <Label htmlFor="item-weight">Item Weight (g)</Label>
                 <Input
                   id="item-weight"
                   onChange={(e) => setItemWeight(e.target.value)}
                   value={itemWeight}
+                  maxlength="500"
                   type="number"
                   placeholder="80 g"
                 />

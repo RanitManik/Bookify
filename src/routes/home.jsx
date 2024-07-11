@@ -9,7 +9,6 @@ const Home = () => {
   const { user } = useFirebase();
   const navigate = useNavigate();
 
-
   useEffect(() => {
     if (!user) {
       navigate("/login");
