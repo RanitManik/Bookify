@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useFirebase } from "@/context/firebase.jsx";
 import { LoaderCircle } from "lucide-react";
 
-const BookDetail = () => {
+const BookDetailRoute = () => {
   const { getBookById } = useFirebase();
   const params = useParams();
 
@@ -31,4 +31,4 @@ const BookDetail = () => {
   );
 };
 
-export default BookDetail;
+export default BookDetailRoute;

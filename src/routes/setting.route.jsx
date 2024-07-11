@@ -1,11 +1,10 @@
-import { useEffect } from "react";
+import { NavigationComponent } from "@/components/navigation.component.jsx";
 import { useNavigate } from "react-router-dom";
-import { Navigation } from "@/components/navigation.jsx";
-import Background from "@/components/Background.jsx";
 import { useFirebase } from "@/context/firebase.jsx";
-import BookList from "@/components/BookList.jsx";
+import { useEffect } from "react";
+import SettingComponent from "@/components/Setting.component.jsx";
 
-const Home = () => {
+const SettingRoute = () => {
   const { user } = useFirebase();
   const navigate = useNavigate();
 
@@ -19,12 +18,10 @@ const Home = () => {
 
   return (
     <>
-      <Navigation />
-      <Background>
-        <BookList />
-      </Background>
+      <NavigationComponent initialSelected="Setting" />
+      <SettingComponent />
     </>
   );
 };
 
-export default Home;
+export default SettingRoute;

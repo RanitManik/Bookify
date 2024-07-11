@@ -1,7 +1,7 @@
 import { useFirebase } from "@/context/firebase.jsx";
 import { CircleUser } from "lucide-react";
 
-export const Welcome = () => {
+export const WelcomeComponent = () => {
   const { user } = useFirebase();
   return (
     <div className="grid place-items-center content-start gap-6">

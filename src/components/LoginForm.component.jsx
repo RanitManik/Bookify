@@ -13,7 +13,7 @@ import { useEffect, useState } from "react";
 import { useFirebase } from "@/context/firebase.jsx";
 import { assets } from "@/assets/assets.js";
 
-export function LoginForm() {
+export function LoginFormComponent() {
   const {
     signInUserWithEmailAndPassword,
     signInUserWithGoogle,

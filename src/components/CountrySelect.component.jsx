@@ -8,7 +8,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-export function CountrySelector() {
+export function CountrySelectorComponent() {
   return (
     <Select>
       <SelectTrigger className="w-full">

@@ -11,7 +11,7 @@ import { useFirebase } from "@/context/firebase.jsx";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-export function CardForListedBooks(book) {
+export function CardForListedBooksComponent(book) {
   const { getImageUrl } = useFirebase();
   const [url, setUrl] = useState("");
 

@@ -132,7 +132,7 @@ export const FirebaseProvider = (props) => {
         photoURL: user.photoURL,
       });
 
-      console.log("Listing created successfully");
+      console.log("ListingRoute created successfully");
     } catch (error) {
       console.error("Error creating listing:", error);
       setError(error.message);

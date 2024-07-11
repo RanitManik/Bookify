@@ -1,22 +1,24 @@
 import { Route, Routes } from "react-router-dom";
-import Home from "@/routes/home.jsx";
-import Register from "@/routes/register.jsx";
-import Login from "@/routes/login.jsx";
-import Listing from "@/routes/listing.jsx";
-import Support from "@/routes/support.jsx";
-import Setting from "@/routes/setting.jsx";
-import BookDetail from "@/routes/BookDetail.jsx";
+import HomeRoute from "@/routes/home.route.jsx";
+import RegisterRoute from "@/routes/register.route.jsx";
+import LoginRoute from "@/routes/login.route.jsx";
+import ListingRoute from "@/routes/listing.route.jsx";
+import SupportRoute from "@/routes/support.route.jsx";
+import SettingRoute from "@/routes/setting.route.jsx";
+import BookDetailRoute from "@/routes/BookDetail.route.jsx";
+import OrdersRoute from "@/routes/orders.route.jsx";
 
 function App() {
   return (
     <Routes>
-      <Route index element={<Home />} />
-      <Route path="/register" element={<Register />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/support" element={<Support />} />
-      <Route path="/setting" element={<Setting />} />
-      <Route path="/list" element={<Listing />} />
-      <Route path="/book/view/:bookId" element={<BookDetail />} />
+      <Route index element={<HomeRoute />} />
+      <Route path="/register" element={<RegisterRoute />} />
+      <Route path="/login" element={<LoginRoute />} />
+      <Route path="/support" element={<SupportRoute />} />
+      <Route path="/setting" element={<SettingRoute />} />
+      <Route path="/list" element={<ListingRoute />} />
+      <Route path="/orders" element={<OrdersRoute />} />
+      <Route path="/book/view/:bookId" element={<BookDetailRoute />} />
     </Routes>
   );
 }

@@ -11,12 +11,12 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useFirebase } from "@/context/firebase.jsx";
-import { FileInput } from "@/components/FileInput.jsx";
+import { FileInputComponent } from "@/components/FileInput.component.jsx";
 import { Textarea } from "@/components/ui/textarea.jsx";
-import { CountrySelector } from "@/components/CountrySelect.jsx";
-import { LanguageSelector } from "@/components/LanguageSelect.jsx";
+import { CountrySelectorComponent } from "@/components/CountrySelect.component.jsx";
+import { LanguageSelector } from "@/components/LanguageSelect.component.jsx";
 
-export function ListingForm() {
+export function ListingFormComponent() {
   const [name, setName] = useState("");
   const [authorName, setAuthorName] = useState("");
   const [isbn10, setIsbn10] = useState("");
@@ -54,7 +54,7 @@ export function ListingForm() {
   };
 
   return (
-    <div className="grid min-h-[min(90svh,_1080px)] place-items-center py-8">
+    <div className="grid min-h-[min(90svh,_1080px)] place-items-center py-8 duration-200 animate-in fade-in">
       <Card className="mx-auto w-full max-w-2xl">
         <CardHeader>
           <CardTitle className="text-2xl">Listing</CardTitle>
@@ -124,7 +124,7 @@ export function ListingForm() {
                   id="book-description"
                   onChange={(e) => setDescription(e.target.value)}
                   value={description}
-                  placeholder="Write your book description here. (within 500 characters)"
+                  placeholder="Write your book description here. (maximum 500 characters)"
                 />
               </div>
               <div className="grid gap-2">
@@ -135,7 +135,7 @@ export function ListingForm() {
                   id="author-description"
                   onChange={(e) => setAuthorDescription(e.target.value)}
                   value={authorDescription}
-                  placeholder="Write about the author here. (within 500 characters)"
+                  placeholder="Write about the author here. (maximum 500 characters)"
                 />
               </div>
             </div>
@@ -200,7 +200,7 @@ export function ListingForm() {
               </div>
               <div className="grid gap-2">
                 <Label>Country of Origin</Label>
-                <CountrySelector
+                <CountrySelectorComponent
                   value={countryOfOrigin}
                   onChange={(value) => setCountryOfOrigin(value)}
                 />
@@ -208,7 +208,7 @@ export function ListingForm() {
             </div>
             <div className="grid gap-2">
               <Label htmlFor="file-input">Image</Label>
-              <FileInput
+              <FileInputComponent
                 id="file-input"
                 onChange={(e) => setCoverPic(e.target.files[0])}
                 required

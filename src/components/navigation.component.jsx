@@ -24,13 +24,14 @@ const NavigationLink = ({ to, label, isSelected, onClick }) => (
   </Link>
 );
 
-export const Navigation = ({ initialSelected = "Home" }) => {
+export const NavigationComponent = ({ initialSelected = "Home" }) => {
   const { handleSignOut, user } = useFirebase();
   const [selectedNav, setSelectedNav] = useState(initialSelected);
 
   const navItems = [
     { label: "Home", to: "/" },
     { label: "Listing", to: "/list" },
+    { label: "Orders", to: "/orders" },
     { label: "Support", to: "/support" },
     { label: "Setting", to: "/setting" },
   ];
@@ -101,7 +102,7 @@ export const Navigation = ({ initialSelected = "Home" }) => {
               <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
               <Input
                 type="search"
-                placeholder="Search products..."
+                placeholder="Search books..."
                 className="pl-8 sm:w-[300px] md:w-[200px] lg:w-[300px]"
               />
             </div>

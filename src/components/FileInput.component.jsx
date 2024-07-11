@@ -1,4 +1,4 @@
-export const FileInput = (props) => {
+export const FileInputComponent = (props) => {
   return (
     <input
       type="file"
