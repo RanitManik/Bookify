@@ -50,7 +50,7 @@ const analytics = getAnalytics(firebaseApp);
 const appCheck = initializeAppCheck(firebaseApp, {
   provider: new ReCaptchaV3Provider(import.meta.env.VITE_RECAPTCHA_SITE_KEY),
 
-  isTokenAutoRefreshEnabled: true
+  isTokenAutoRefreshEnabled: true,
 });
 
 export const FirebaseProvider = (props) => {
@@ -89,40 +89,20 @@ export const FirebaseProvider = (props) => {
   };
 
   const signInUserWithEmailAndPassword = async (email, password) => {
-    try {
-      await signInWithEmailAndPassword(firebaseAuth, email, password);
-    } catch (error) {
-      setError(error.message);
-    }
+    await signInWithEmailAndPassword(firebaseAuth, email, password);
   };
 
   const signInUserWithGoogle = async () => {
-    try {
-      await signInWithPopup(firebaseAuth, googleProvider);
-    } catch (error) {
-      setError(error.message);
-    }
+    signInWithPopup(firebaseAuth, googleProvider);
   };
   const signInUserWithGithub = async () => {
-    try {
-      await signInWithPopup(firebaseAuth, githubProvider);
-    } catch (error) {
-      setError(error.message);
-    }
+    signInWithPopup(firebaseAuth, githubProvider);
   };
   const signInUserWithTwitter = async () => {
-    try {
-      await signInWithPopup(firebaseAuth, twitterProvider);
-    } catch (error) {
-      setError(error.message);
-    }
+    signInWithPopup(firebaseAuth, twitterProvider);
   };
   const signInUserWithFacebook = async () => {
-    try {
-      await signInWithPopup(firebaseAuth, facebookProvider);
-    } catch (error) {
-      setError(error.message);
-    }
+    signInWithPopup(firebaseAuth, facebookProvider);
   };
 
   const handleCreateNewListing = async (listingData) => {
