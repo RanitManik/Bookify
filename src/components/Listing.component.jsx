@@ -59,32 +59,36 @@ export function ListingFormComponent() {
         <CardHeader>
           <CardTitle className="text-2xl">Listing</CardTitle>
           <CardDescription>
-            Enter your book details below to add your book
+            Enter your book details below to list your book
           </CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="grid gap-6">
             <div className="grid gap-4 sm:grid-cols-2">
               <div className="grid gap-2">
-                <Label htmlFor="book-name">Book Name</Label>
+                <Label htmlFor="book-name">
+                  Book Name <span>*</span>
+                </Label>
                 <Input
                   id="book-name"
                   onChange={(e) => setName(e.target.value)}
                   value={name}
-                  maxlength="30"
+                  maxLength="30"
                   type="text"
                   placeholder="The Jungle Book"
                   required
                 />
               </div>
               <div className="grid gap-2">
-                <Label htmlFor="author-name">Author Name</Label>
+                <Label htmlFor="author-name">
+                  Author Name <span>*</span>
+                </Label>
                 <Input
                   id="author-name"
                   onChange={(e) => setAuthorName(e.target.value)}
                   value={authorName}
                   type="text"
-                  maxlength="30"
+                  maxLength="30"
                   placeholder="Rudyard Kipling"
                   required
                 />
@@ -97,10 +101,9 @@ export function ListingFormComponent() {
                   id="isbn-10"
                   onChange={(e) => setIsbn10(e.target.value)}
                   value={isbn10}
-                  maxlength="20"
+                  maxLength="10"
                   type="text"
                   placeholder="8119555600"
-                  required
                 />
               </div>
               <div className="grid gap-2">
@@ -109,9 +112,9 @@ export function ListingFormComponent() {
                   id="isbn-13"
                   onChange={(e) => setIsbn13(e.target.value)}
                   value={isbn13}
-                  maxlength="20"
+                  maxLength="13"
                   type="text"
-                  placeholder="978-8119555606"
+                  placeholder="9788119555606"
                 />
               </div>
             </div>
@@ -120,7 +123,7 @@ export function ListingFormComponent() {
                 <Label htmlFor="book-description">Product Description</Label>
                 <Textarea
                   rows="4"
-                  maxlength="500"
+                  maxLength="500"
                   id="book-description"
                   onChange={(e) => setDescription(e.target.value)}
                   value={description}
@@ -131,7 +134,7 @@ export function ListingFormComponent() {
                 <Label htmlFor="author-description">About the Author</Label>
                 <Textarea
                   rows="4"
-                  maxlength="500"
+                  maxLength="500"
                   id="author-description"
                   onChange={(e) => setAuthorDescription(e.target.value)}
                   value={authorDescription}
@@ -146,25 +149,28 @@ export function ListingFormComponent() {
                   id="item-weight"
                   onChange={(e) => setItemWeight(e.target.value)}
                   value={itemWeight}
-                  maxlength="500"
-                  type="number"
+                  maxLength="500"
+                  type="text"
                   placeholder="80 g"
                 />
               </div>
               <div className="grid gap-2">
-                <Label htmlFor="pages">Paperback</Label>
+                <Label htmlFor="pages">Print length</Label>
                 <Input
                   id="pages"
                   onChange={(e) => setPages(e.target.value)}
                   value={pages}
-                  type="number"
+                  maxLength="10000"
+                  type="text"
                   placeholder="128 pages"
                 />
               </div>
             </div>
             <div className="grid gap-4 sm:grid-cols-2">
               <div className="grid gap-2">
-                <Label htmlFor="price">Price (MRP)</Label>
+                <Label htmlFor="price">
+                  Price (MRP) <span>*</span>
+                </Label>
                 <Input
                   id="price"
                   onChange={(e) => setPrice(e.target.value)}
@@ -177,7 +183,9 @@ export function ListingFormComponent() {
                 />
               </div>
               <div className="grid gap-2">
-                <Label htmlFor="discount">Discount (%)</Label>
+                <Label htmlFor="discount">
+                  Discount (%) <span>*</span>
+                </Label>
                 <Input
                   id="discount"
                   onChange={(e) => setDiscount(e.target.value)}
@@ -207,7 +215,9 @@ export function ListingFormComponent() {
               </div>
             </div>
             <div className="grid gap-2">
-              <Label htmlFor="file-input">Image</Label>
+              <Label htmlFor="file-input">
+                Image <span>*</span>
+              </Label>
               <FileInputComponent
                 id="file-input"
                 onChange={(e) => setCoverPic(e.target.files[0])}

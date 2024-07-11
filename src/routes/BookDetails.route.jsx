@@ -2,8 +2,10 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useFirebase } from "@/context/firebase.context.jsx";
 import { LoaderCircle } from "lucide-react";
+import { NavigationComponent } from "@/components/Navigation.component.jsx";
+import { BookDetailsComponent } from "@/components/BookDetails.component.jsx";
 
-const BookDetailRoute = () => {
+const BookDetailsRoute = () => {
   const { getBookById } = useFirebase();
   const params = useParams();
 
@@ -17,18 +19,22 @@ const BookDetailRoute = () => {
 
   if (!data)
     return (
-      <div className="grid min-h-[80svh] place-items-center">
+      <>
+        <NavigationComponent />
         <div className="grid min-h-[80svh] place-items-center">
-          <LoaderCircle className="h-20 w-20 animate-spin" />
+          <div className="grid min-h-[80svh] place-items-center">
+            <LoaderCircle className="h-20 w-20 animate-spin" />
+          </div>
         </div>
-      </div>
+      </>
     );
 
   return (
     <>
-      <p>{data.name}</p>
+      <NavigationComponent />
+      <BookDetailsComponent data={data} />
     </>
   );
 };
 
-export default BookDetailRoute;
+export default BookDetailsRoute;

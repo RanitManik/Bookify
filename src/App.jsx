@@ -5,8 +5,9 @@ import LoginRoute from "@/routes/login.route.jsx";
 import ListingRoute from "@/routes/listing.route.jsx";
 import SupportRoute from "@/routes/support.route.jsx";
 import SettingRoute from "@/routes/setting.route.jsx";
-import BookDetailRoute from "@/routes/BookDetail.route.jsx";
+import BookDetailsRoute from "@/routes/BookDetails.route.jsx";
 import OrdersRoute from "@/routes/orders.route.jsx";
+import { ProductsRoute } from "@/routes/products.route.jsx";
 
 function App() {
   return (
@@ -18,7 +19,8 @@ function App() {
       <Route path="/setting" element={<SettingRoute />} />
       <Route path="/list" element={<ListingRoute />} />
       <Route path="/orders" element={<OrdersRoute />} />
-      <Route path="/book/view/:bookId" element={<BookDetailRoute />} />
+      <Route path="/products" element={<ProductsRoute />} />
+      <Route path="/book/view/:bookId" element={<BookDetailsRoute />} />
     </Routes>
   );
 }

@@ -13,6 +13,11 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button.jsx";
 import { useFirebase } from "@/context/firebase.context.jsx";
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "@/components/ui/avatar.jsx";
 
 const NavigationLink = ({ to, label, isSelected, onClick }) => (
   <Link
@@ -32,8 +37,9 @@ export const NavigationComponent = ({ initialSelected = "Home" }) => {
     { label: "Home", to: "/" },
     { label: "Listing", to: "/list" },
     { label: "Orders", to: "/orders" },
-    { label: "Support", to: "/support" },
+    { label: "Products", to: "/products" },
     { label: "Setting", to: "/setting" },
+    { label: "Support", to: "/support" },
   ];
 
   return (
@@ -110,14 +116,22 @@ export const NavigationComponent = ({ initialSelected = "Home" }) => {
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="secondary" size="icon" className="rounded-full">
-                {user && user.photoURL ? (
-                  <img
-                    className="rounded-full"
-                    src={user.photoURL}
-                    alt={`${user.displayName}'s profile`}
-                  />
+                {user && user.displayName ? (
+                  <Avatar>
+                    <AvatarImage
+                      src={user.photoURL}
+                      alt={`@${user.displayName}`}
+                    />
+                    <AvatarFallback>
+                      {user.displayName
+                        .split(" ")
+                        .map((part) => part[0])
+                        .join("")
+                        .toUpperCase()}
+                    </AvatarFallback>
+                  </Avatar>
                 ) : (
-                  <CircleUser className="h-5 w-5" />
+                  <CircleUser />
                 )}
                 <span className="sr-only">Toggle user menu</span>
               </Button>

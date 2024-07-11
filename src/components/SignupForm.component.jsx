@@ -62,6 +62,7 @@ export function SignupFormComponent() {
                   placeholder="Max"
                   required
                   value={firstName}
+                  maxLength="15"
                   onChange={(e) => setFirstName(e.target.value)}
                 />
               </div>
@@ -72,6 +73,7 @@ export function SignupFormComponent() {
                   placeholder="Robinson"
                   required
                   value={lastName}
+                  maxLength="15"
                   onChange={(e) => setLastName(e.target.value)}
                 />
               </div>
@@ -84,6 +86,7 @@ export function SignupFormComponent() {
                 placeholder="m@example.com"
                 required
                 value={email}
+                maxLength="50"
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
@@ -95,6 +98,7 @@ export function SignupFormComponent() {
                 required
                 placeholder="password"
                 value={password}
+                maxLength="50"
                 onChange={(e) => setPassword(e.target.value)}
               />
             </div>

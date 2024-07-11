@@ -15,7 +15,7 @@ const BookListComponent = () => {
 
   if (books.length === 0) {
     return (
-      <div className="grid min-h-[80svh] place-items-center">
+      <div className="grid min-h-[min(80svh,_1000px)] place-items-center">
         <LoaderCircle className="h-20 w-20 animate-spin" />
       </div>
     );

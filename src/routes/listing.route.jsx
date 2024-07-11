@@ -1,4 +1,4 @@
-import { NavigationComponent } from "@/components/navigation.component.jsx";
+import { NavigationComponent } from "@/components/Navigation.component.jsx";
 import BackgroundComponent from "@/components/Background.component.jsx";
 import { ListingFormComponent } from "@/components/Listing.component.jsx";
 import { useFirebase } from "@/context/firebase.context.jsx";
