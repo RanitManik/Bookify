@@ -111,26 +111,27 @@ export function ListingForm() {
                 />
               </div>
             </div>
-            {/* TODO: make a description word limit */}
             <div className="grid gap-4">
               <div className="grid gap-2">
                 <Label htmlFor="book-description">Product Description</Label>
                 <Textarea
                   rows="4"
+                  maxLength="500"
                   id="book-description"
                   onChange={(e) => setDescription(e.target.value)}
                   value={description}
-                  placeholder="Type your book description here."
+                  placeholder="Write your book description here. (within 500 characters)"
                 />
               </div>
               <div className="grid gap-2">
                 <Label htmlFor="author-description">About the Author</Label>
                 <Textarea
                   rows="4"
+                  maxLength="500"
                   id="author-description"
                   onChange={(e) => setAuthorDescription(e.target.value)}
                   value={authorDescription}
-                  placeholder="Type about the author here."
+                  placeholder="Write about the author here. (within 500 characters)"
                 />
               </div>
             </div>

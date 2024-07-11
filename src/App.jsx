@@ -5,6 +5,7 @@ import Login from "@/routes/login.jsx";
 import Listing from "@/routes/listing.jsx";
 import Support from "@/routes/support.jsx";
 import Setting from "@/routes/setting.jsx";
+import BookDetail from "@/routes/BookDetail.jsx";
 
 function App() {
   return (
@@ -12,9 +13,10 @@ function App() {
       <Route index element={<Home />} />
       <Route path="/register" element={<Register />} />
       <Route path="/login" element={<Login />} />
-      <Route path="/listing" element={<Listing />} />
       <Route path="/support" element={<Support />} />
       <Route path="/setting" element={<Setting />} />
+      <Route path="/list" element={<Listing />} />
+      <Route path="/book/view/:bookId" element={<BookDetail />} />
     </Routes>
   );
 }

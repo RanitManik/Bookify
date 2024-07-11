@@ -9,10 +9,13 @@ import {
 } from "@/components/ui/card";
 import { useFirebase } from "@/context/firebase.jsx";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export function CardForListedBooks(book) {
   const { getImageUrl } = useFirebase();
   const [url, setUrl] = useState("");
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (book?.imageURL) {
@@ -69,7 +72,12 @@ export function CardForListedBooks(book) {
         </div>
       </CardContent>
       <CardFooter className="grid grid-cols-2 gap-4">
-        <Button variant="secondary">See Details</Button>
+        <Button
+          onClick={() => navigate(`/book/view/${book.id}`)}
+          variant="secondary"
+        >
+          See Details
+        </Button>
         <Button variant="secondary">Add to Cart</Button>
       </CardFooter>
     </Card>

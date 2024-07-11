@@ -2,20 +2,27 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import {
-  getAuth,
   createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  GoogleAuthProvider,
-  signInWithPopup,
-  onAuthStateChanged,
-  GithubAuthProvider,
-  TwitterAuthProvider,
   FacebookAuthProvider,
+  getAuth,
+  GithubAuthProvider,
+  GoogleAuthProvider,
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  signInWithPopup,
   signOut,
+  TwitterAuthProvider,
   updateProfile,
 } from "firebase/auth";
-import { getFirestore, collection, addDoc, getDocs } from "firebase/firestore";
-import { getStorage, uploadBytes, ref, getDownloadURL } from "firebase/storage";
+import {
+  addDoc,
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  getFirestore,
+} from "firebase/firestore";
+import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 import { initializeAppCheck, ReCaptchaV3Provider } from "firebase/app-check";
 
 const Firebase = createContext(null);
@@ -161,6 +168,11 @@ export const FirebaseProvider = (props) => {
     return getDownloadURL(ref(storage, path));
   };
 
+  const getBookById = async (id) => {
+    const docRef = doc(firestore, "books", id);
+    return await getDoc(docRef);
+  };
+
   const isLoggedIn = !!user;
 
   return (
@@ -178,6 +190,7 @@ export const FirebaseProvider = (props) => {
         user,
         error,
         getListAllBooks,
+        getBookById,
         getImageUrl,
         handleUserProfileUpdate,
       }}

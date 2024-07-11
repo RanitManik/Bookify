@@ -30,7 +30,7 @@ export const Navigation = ({ initialSelected = "Home" }) => {
 
   const navItems = [
     { label: "Home", to: "/" },
-    { label: "Listing", to: "/listing" },
+    { label: "Listing", to: "/list" },
     { label: "Support", to: "/support" },
     { label: "Setting", to: "/setting" },
   ];
