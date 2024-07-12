@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button.jsx";
 import { useFirebase } from "@/context/firebase.context.jsx";
 import {
@@ -32,19 +32,19 @@ const NavigationLink = ({ to, label, isSelected, onClick }) => (
 export const NavigationComponent = ({ initialSelected = "Home" }) => {
   const { handleSignOut, user } = useFirebase();
   const [selectedNav, setSelectedNav] = useState(initialSelected);
+  const navigate = useNavigate();
 
   const navItems = [
     { label: "Home", to: "/" },
     { label: "Listing", to: "/list" },
-    { label: "Orders", to: "/orders" },
     { label: "Products", to: "/products" },
     { label: "Setting", to: "/setting" },
     { label: "Support", to: "/support" },
   ];
 
   return (
-    <header className="sticky top-0 z-50 border-b bg-background/60 px-4 backdrop-blur-lg md:px-6">
-      <div className="m-auto flex h-16 max-w-[1900px] items-center gap-4">
+    <header className="sticky top-0 z-50 border-b bg-background/70 px-4 backdrop-blur-lg md:px-6">
+      <div className="m-auto flex h-16 max-w-[1900px] items-center gap-6">
         <nav className="hidden flex-col gap-6 text-lg font-medium md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6">
           <Link
             to="/"
@@ -139,8 +139,12 @@ export const NavigationComponent = ({ initialSelected = "Home" }) => {
             <DropdownMenuContent align="end">
               <DropdownMenuLabel>My Account</DropdownMenuLabel>
               <DropdownMenuSeparator />
-              <DropdownMenuItem>Settings</DropdownMenuItem>
-              <DropdownMenuItem>Support</DropdownMenuItem>
+              <DropdownMenuItem onClick={() => navigate("/setting")}>
+                Settings
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => navigate("/support")}>
+                Support
+              </DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem onClick={handleSignOut}>
                 Logout

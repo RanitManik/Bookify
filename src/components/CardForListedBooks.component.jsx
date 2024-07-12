@@ -18,14 +18,14 @@ export function CardForListedBooksComponent(book) {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (book?.imageURL) {
-      getImageUrl(book.imageURL)
+    if (book?.coverImgURL) {
+      getImageUrl(book.coverImgURL)
         .then((url) => setUrl(url))
         .catch((error) => {
           console.error("Error getting download URL:", error);
         });
     }
-  }, [book.imageURL, getImageUrl]);
+  }, [book.coverImgURL, getImageUrl]);
 
   return (
     <Card className="max-w-[350px] overflow-hidden">
@@ -61,17 +61,13 @@ export function CardForListedBooksComponent(book) {
             className="text-muted-foreground/90 line-through"
             aria-label="MRP price"
           >
-            {book.discount ? (
-              <>Rs. {(book.price * (1 + book.discount / 100)).toFixed(0)}</>
-            ) : (
-              <>Rs. {(book.price * 1.4).toFixed(0)}</>
-            )}
+            Rs. {book.maxRetailPrice}
           </span>
           <h3
             className="inline px-2 text-2xl text-foreground"
-            aria-label="selling price after 40 percent discount"
+            aria-label="selling price"
           >
-            ₹{book.price}
+            ₹{book.finalPrice}
           </h3>
         </div>
       </CardContent>

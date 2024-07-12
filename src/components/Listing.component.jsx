@@ -21,15 +21,19 @@ export function ListingFormComponent() {
   const [authorName, setAuthorName] = useState("");
   const [isbn10, setIsbn10] = useState("");
   const [isbn13, setIsbn13] = useState("");
-  const [price, setPrice] = useState("");
-  const [discount, setDiscount] = useState("");
-  const [coverPic, setCoverPic] = useState(null);
-  const [description, setDescription] = useState("");
+  const [maxRetailPrice, setMaxRetailPrice] = useState("");
+  const [finalPrice, setFinalPrice] = useState("");
+  const [bookCoverPicture, setBookCoverPicture] = useState(null);
+  const [bookOtherPictures, setBookOtherPictures] = useState([]);
+  const [bookDescription, setBookDescription] = useState("");
   const [authorDescription, setAuthorDescription] = useState("");
+  const [publisherDescription, setPublisherDescription] = useState("");
   const [itemWeight, setItemWeight] = useState("");
   const [pages, setPages] = useState("");
   const [language, setLanguage] = useState("");
   const [countryOfOrigin, setCountryOfOrigin] = useState("");
+  const [publicationDate, setPublicationDate] = useState("");
+  const [initialReleaseDate, setInitialReleaseDate] = useState("");
 
   const { handleCreateNewListing } = useFirebase();
 
@@ -40,24 +44,62 @@ export function ListingFormComponent() {
       authorName,
       isbn10,
       isbn13,
-      price,
-      discount,
-      coverPic,
-      description,
+      maxRetailPrice,
+      finalPrice,
+      bookCoverPicture,
+      bookOtherPictures,
+      bookDescription,
       authorDescription,
+      publisherDescription,
       itemWeight,
       pages,
       language,
       countryOfOrigin,
+      publicationDate,
+      initialReleaseDate,
     };
     handleCreateNewListing(listingData);
   };
 
+  const handleCoverFileChange = (e) => {
+    const file = e.target.files[0];
+    if (!file) return; // User canceled file selection
+    if (!file.type.startsWith("image/")) {
+      alert("Only image files are allowed.");
+      return;
+    }
+    if (file.size > 500 * 1024) {
+      alert("Each image must be less than 500KB.");
+      return;
+    }
+    setBookCoverPicture(file);
+  };
+
+  const handleOtherFileChange = (e) => {
+    const files = Array.from(e.target.files);
+    if (files.length > 5) {
+      alert("You can only select up to 5 images.");
+      return;
+    }
+    const validFiles = files.filter((file) => {
+      if (!file.type.startsWith("image/")) {
+        alert("Only image files are allowed.");
+        return false;
+      }
+      if (file.size > 500 * 1024) {
+        alert("Each image must be less than 500KB.");
+        return false;
+      }
+      return true;
+    });
+    setBookOtherPictures(validFiles);
+  };
+
   return (
-    <div className="grid min-h-[min(90svh,_1080px)] place-items-center py-8 duration-200 animate-in fade-in">
+    <div className="grid min-h-[min(90vh,_1080px)] place-items-center py-8 duration-200 animate-in fade-in">
       <Card className="mx-auto w-full max-w-2xl">
         <CardHeader>
-          <CardTitle className="text-2xl">Listing</CardTitle>
+          <CardTitle className="text-2xl">List Your Books</CardTitle>
           <CardDescription>
             Enter your book details below to list your book
           </CardDescription>
@@ -73,6 +115,7 @@ export function ListingFormComponent() {
                   id="book-name"
                   onChange={(e) => setName(e.target.value)}
                   value={name}
+                  minLength="1"
                   maxLength="30"
                   type="text"
                   placeholder="The Jungle Book"
@@ -88,6 +131,7 @@ export function ListingFormComponent() {
                   onChange={(e) => setAuthorName(e.target.value)}
                   value={authorName}
                   type="text"
+                  minLength="1"
                   maxLength="30"
                   placeholder="Rudyard Kipling"
                   required
@@ -101,8 +145,9 @@ export function ListingFormComponent() {
                   id="isbn-10"
                   onChange={(e) => setIsbn10(e.target.value)}
                   value={isbn10}
-                  maxLength="10"
-                  type="text"
+                  min="1000000000"
+                  max="9999999999"
+                  type="number"
                   placeholder="8119555600"
                 />
               </div>
@@ -112,33 +157,10 @@ export function ListingFormComponent() {
                   id="isbn-13"
                   onChange={(e) => setIsbn13(e.target.value)}
                   value={isbn13}
-                  maxLength="13"
-                  type="text"
+                  min="1000000000000"
+                  max="9999999999999"
+                  type="number"
                   placeholder="9788119555606"
-                />
-              </div>
-            </div>
-            <div className="grid gap-4">
-              <div className="grid gap-2">
-                <Label htmlFor="book-description">Product Description</Label>
-                <Textarea
-                  rows="4"
-                  maxLength="500"
-                  id="book-description"
-                  onChange={(e) => setDescription(e.target.value)}
-                  value={description}
-                  placeholder="Write your book description here. (maximum 500 characters)"
-                />
-              </div>
-              <div className="grid gap-2">
-                <Label htmlFor="author-description">About the Author</Label>
-                <Textarea
-                  rows="4"
-                  maxLength="500"
-                  id="author-description"
-                  onChange={(e) => setAuthorDescription(e.target.value)}
-                  value={authorDescription}
-                  placeholder="Write about the author here. (maximum 500 characters)"
                 />
               </div>
             </div>
@@ -149,8 +171,9 @@ export function ListingFormComponent() {
                   id="item-weight"
                   onChange={(e) => setItemWeight(e.target.value)}
                   value={itemWeight}
-                  maxLength="500"
-                  type="text"
+                  min="10"
+                  max="5000"
+                  type="number"
                   placeholder="80 g"
                 />
               </div>
@@ -160,9 +183,34 @@ export function ListingFormComponent() {
                   id="pages"
                   onChange={(e) => setPages(e.target.value)}
                   value={pages}
-                  maxLength="10000"
-                  type="text"
+                  min="10"
+                  max="10000"
+                  type="number"
                   placeholder="128 pages"
+                />
+              </div>
+            </div>
+            <div className="grid gap-4 sm:grid-cols-2">
+              <div className="grid gap-2">
+                <Label htmlFor="publication-date">Publication Date</Label>
+                <Input
+                  id="publication-date"
+                  onChange={(e) => setPublicationDate(e.target.value)}
+                  value={publicationDate}
+                  max={new Date().toISOString().split("T")[0]}
+                  type="date"
+                />
+              </div>
+              <div className="grid gap-2">
+                <Label htmlFor="initial-release-date">
+                  Initial Release Date
+                </Label>
+                <Input
+                  id="initial-release-date"
+                  onChange={(e) => setInitialReleaseDate(e.target.value)}
+                  value={initialReleaseDate}
+                  max={new Date().toISOString().split("T")[0]}
+                  type="date"
                 />
               </div>
             </div>
@@ -173,8 +221,8 @@ export function ListingFormComponent() {
                 </Label>
                 <Input
                   id="price"
-                  onChange={(e) => setPrice(e.target.value)}
-                  value={price}
+                  onChange={(e) => setMaxRetailPrice(e.target.value)}
+                  value={maxRetailPrice}
                   type="number"
                   required
                   min="10"
@@ -183,18 +231,18 @@ export function ListingFormComponent() {
                 />
               </div>
               <div className="grid gap-2">
-                <Label htmlFor="discount">
-                  Discount (%) <span>*</span>
+                <Label htmlFor="final-price">
+                  Final Price <span>*</span>
                 </Label>
                 <Input
-                  id="discount"
-                  onChange={(e) => setDiscount(e.target.value)}
-                  value={discount}
+                  id="final-price"
+                  onChange={(e) => setFinalPrice(e.target.value)}
+                  value={finalPrice}
                   type="number"
                   required
-                  min="0"
-                  max="95"
-                  placeholder="0 to 95%"
+                  min="10"
+                  max="10000"
+                  placeholder="Rs.10 to Rs.10000"
                 />
               </div>
             </div>
@@ -214,15 +262,67 @@ export function ListingFormComponent() {
                 />
               </div>
             </div>
-            <div className="grid gap-2">
-              <Label htmlFor="file-input">
-                Image <span>*</span>
-              </Label>
-              <FileInputComponent
-                id="file-input"
-                onChange={(e) => setCoverPic(e.target.files[0])}
-                required
-              />
+            <div className="grid gap-4">
+              <div className="grid gap-2">
+                <Label htmlFor="book-description">Product Description</Label>
+                <Textarea
+                  rows="5"
+                  maxLength="3000"
+                  minLength="250"
+                  id="book-description"
+                  onChange={(e) => setBookDescription(e.target.value)}
+                  value={bookDescription}
+                  placeholder="Write your book description here. (maximum 3000 characters)"
+                />
+              </div>
+              <div className="grid gap-2">
+                <Label htmlFor="author-description">About the Author</Label>
+                <Textarea
+                  rows="5"
+                  minLength="250"
+                  maxLength="3000"
+                  id="author-description"
+                  onChange={(e) => setAuthorDescription(e.target.value)}
+                  value={authorDescription}
+                  placeholder="Write about the author here. (maximum 3000 characters)"
+                />
+              </div>
+              <div className="grid gap-2">
+                <Label htmlFor="publisher-description">
+                  About the Publisher
+                </Label>
+                <Textarea
+                  rows="5"
+                  maxLength="1000"
+                  id="publisher-description"
+                  onChange={(e) => setPublisherDescription(e.target.value)}
+                  value={publisherDescription}
+                  placeholder="ABC Book Store (1 January 2023), +91 XXXXXXXXXX, abcbookstore@example.com"
+                />
+              </div>
+            </div>
+            <div className="grid gap-4 sm:grid-cols-2">
+              <div className="grid gap-2">
+                <Label htmlFor="cover-file-input">
+                  Cover Image <span>*</span>
+                </Label>
+                <FileInputComponent
+                  id="cover-file-input"
+                  onChange={handleCoverFileChange}
+                  required
+                />
+              </div>
+              <div className="grid gap-2">
+                <Label htmlFor="other-file-input">
+                  Other Images <span>*</span>
+                </Label>
+                <FileInputComponent
+                  id="other-file-input"
+                  onChange={handleOtherFileChange}
+                  required
+                  multiple
+                />
+              </div>
             </div>
             <Button type="submit" className="w-full">
               <Share className="mr-2 h-4 w-4" /> Publish Book

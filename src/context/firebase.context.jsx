@@ -21,6 +21,8 @@ import {
   getDoc,
   getDocs,
   getFirestore,
+  query,
+  where,
 } from "firebase/firestore";
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 import { initializeAppCheck, ReCaptchaV3Provider } from "firebase/app-check";
@@ -51,9 +53,11 @@ const firestore = getFirestore(firebaseApp);
 const storage = getStorage(firebaseApp);
 
 // enable firebase analytics
+// eslint-disable-next-line no-unused-vars
 const analytics = getAnalytics(firebaseApp);
 
 // enable firebase appCheck
+// eslint-disable-next-line no-unused-vars
 const appCheck = initializeAppCheck(firebaseApp, {
   provider: new ReCaptchaV3Provider(import.meta.env.VITE_RECAPTCHA_SITE_KEY),
 
@@ -114,25 +118,39 @@ export const FirebaseProvider = (props) => {
 
   const handleCreateNewListing = async (listingData) => {
     try {
-      const { coverPic, ...rest } = listingData;
-      // Upload cover image to FirebaseContext Storage
-      const imgRef = ref(
+      const { bookCoverPicture, bookOtherPictures, ...rest } = listingData;
+
+      // Upload cover image to Firebase Storage
+      const coverImgRef = ref(
         storage,
-        `uploads/images/${Date.now()}-${coverPic.name}`,
+        `uploads/images/${Date.now()}-${bookCoverPicture.name}`,
       );
-      const uploadResult = await uploadBytes(imgRef, coverPic);
+      await uploadBytes(coverImgRef, bookCoverPicture);
+      const coverImgURL = await getDownloadURL(coverImgRef);
+
+      // Upload book pictures to Firebase Storage
+      const uploadTasks = bookOtherPictures.map(async (file) => {
+        const imgRef = ref(
+          storage,
+          `uploads/images/${Date.now()}-${file.name}`,
+        );
+        await uploadBytes(imgRef, file);
+        return getDownloadURL(imgRef);
+      });
+      const imageURLs = await Promise.all(uploadTasks);
 
       // Add book listing to Firestore
       await addDoc(collection(firestore, "books"), {
         ...rest,
-        imageURL: uploadResult.ref.fullPath,
+        imageURLs,
+        coverImgURL,
         userID: user.uid,
         userEmail: user.email,
         displayName: user.displayName,
         photoURL: user.photoURL,
       });
 
-      console.log("ListingRoute created successfully");
+      console.log("Listing created successfully");
     } catch (error) {
       console.error("Error creating listing:", error);
       setError(error.message);
@@ -173,6 +191,25 @@ export const FirebaseProvider = (props) => {
     return await getDoc(docRef);
   };
 
+  const placeOrder = async (bookId, qty) => {
+    const collectionRef = collection(firestore, "books", bookId, "orders");
+    const result = await addDoc(collectionRef, {
+      userID: user.uid,
+      userEmail: user.email,
+      displayName: user.displayName,
+      photoURL: user.photoURL,
+      Quantity: qty,
+    });
+    console.log(result);
+  };
+
+  const fetchMyProducts = async () => {
+    if (!user) return null;
+    const collectionRef = collection(firestore, "books");
+    const q = query(collectionRef, where("userID", "==", user.uid));
+    return await getDocs(q);
+  };
+
   const isLoggedIn = !!user;
 
   return (
@@ -193,6 +230,8 @@ export const FirebaseProvider = (props) => {
         getBookById,
         getImageUrl,
         handleUserProfileUpdate,
+        placeOrder,
+        fetchMyProducts,
       }}
     >
       {props.children}

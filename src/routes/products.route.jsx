@@ -2,7 +2,8 @@ import { useFirebase } from "@/context/firebase.context.jsx";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { NavigationComponent } from "@/components/Navigation.component.jsx";
-import { ProductsComponent } from "@/components/products.component.jsx";
+import { ProductsComponent } from "@/components/Products.component.jsx";
+import BackgroundComponent from "@/components/Background.component.jsx";
 
 export const ProductsRoute = () => {
   const { user } = useFirebase();
@@ -19,7 +20,9 @@ export const ProductsRoute = () => {
   return (
     <>
       <NavigationComponent initialSelected="Products" />
-      <ProductsComponent />
+      <BackgroundComponent>
+        <ProductsComponent />
+      </BackgroundComponent>
     </>
   );
 };
