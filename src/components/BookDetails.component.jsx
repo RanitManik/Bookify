@@ -38,8 +38,8 @@ export const BookDetailsComponent = ({ data, bookId }) => {
 
   return (
     <BackgroundComponent>
-      <div className="py-8 duration-200 animate-in fade-in md:px-4 md:grid md:grid-cols-2 md:gap-4">
-        <div className="relative mx-auto w-fit p-10">
+      <div className="py-8 duration-200 animate-in fade-in md:grid md:grid-cols-2 md:gap-4 md:px-4">
+        <div className="relative mx-auto mb-10 w-fit md:mb-0">
           <Carousel
             plugins={[plugin.current]}
             className="w-full max-w-xs"
@@ -70,7 +70,7 @@ export const BookDetailsComponent = ({ data, bookId }) => {
                   <div className="p-1">
                     <Card>
                       <CardContent className="flex aspect-square items-center justify-center p-6">
-                        <div className="grid h-[420px] w-[300px] place-items-center">
+                        <div className="grid h-[420px] w-[300px] animate-pulse place-items-center bg-muted">
                           <span>No image available</span>
                         </div>
                       </CardContent>
