@@ -2,7 +2,6 @@ import BackgroundComponent from "@/components/Background.component.jsx";
 import { useFirebase } from "@/context/firebase.context.jsx";
 import { useEffect, useState, useRef } from "react";
 import { Button } from "@/components/ui/button.jsx";
-import { Input } from "@/components/ui/input.jsx";
 import {
   Carousel,
   CarouselContent,
@@ -39,8 +38,8 @@ export const BookDetailsComponent = ({ data, bookId }) => {
 
   return (
     <BackgroundComponent>
-      <div className="grid items-start gap-10 py-8 duration-200 animate-in fade-in md:px-4 lg:grid-cols-2">
-        <div className="relative mx-auto max-w-[80%] p-10">
+      <div className="py-8 duration-200 animate-in fade-in md:px-4 md:grid md:grid-cols-2 md:gap-4">
+        <div className="relative mx-auto w-fit p-10">
           <Carousel
             plugins={[plugin.current]}
             className="w-full max-w-xs"
@@ -85,7 +84,7 @@ export const BookDetailsComponent = ({ data, bookId }) => {
           </Carousel>
         </div>
 
-        <div>
+        <div className="m-auto w-fit">
           {data.name ? <p>{data.name}</p> : <p>No name available</p>}
           {data.authorName && <p>Author: {data.authorName}</p>}
           {data.isbn10 && <p>ISBN-10: {data.isbn10}</p>}
@@ -110,7 +109,7 @@ export const BookDetailsComponent = ({ data, bookId }) => {
             min="1"
             max="100"
           />
-          <Input
+          <input
             type="range"
             value={qty}
             onChange={(e) => setQty(Number(e.target.value))}
