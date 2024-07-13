@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 export const DataErrorComponent = ({ dataError }) => {
   const navigate = useNavigate();
   return (
-    <main className="grid min-h-[min(90svh,_1000px)] place-items-center content-center items-center gap-6 p-6 text-center">
+    <main className="grid min-h-[min(90svh,_1000px)] place-items-center content-center items-center gap-6 p-8 text-center">
       <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
         404 | {dataError.code}
       </h1>

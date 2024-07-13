@@ -1,6 +1,6 @@
 export const NoBookDataErrorComponent = () => {
   return (
-    <main className="min-h-[min(90svh,_1000px)] grid place-items-center content-center gap-4 p-6 text-center">
+    <main className="grid min-h-[min(90svh,_1000px)] place-items-center content-center gap-4 p-6 text-center">
       <h1 className="scroll-m-20 text-center text-4xl font-extrabold tracking-tight lg:text-5xl">
         500 | No books available.
       </h1>

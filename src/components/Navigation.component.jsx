@@ -34,6 +34,7 @@ export const NavigationComponent = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [selectedNav, setSelectedNav] = useState(null);
+  const [isSheetOpen, setIsSheetOpen] = useState(false);
 
   const navItems = [
     { label: "Home", to: "/" },
@@ -74,12 +75,13 @@ export const NavigationComponent = () => {
             />
           ))}
         </nav>
-        <Sheet>
+        <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
           <SheetTrigger asChild>
             <Button
               variant="outline"
               size="icon"
               className="shrink-0 md:hidden"
+              onClick={() => setIsSheetOpen(true)}
             >
               <Menu className="h-5 w-5" />
               <span className="sr-only">Toggle navigation menu</span>
@@ -90,7 +92,10 @@ export const NavigationComponent = () => {
               <Link
                 to="/"
                 className="flex items-center gap-2 text-lg font-semibold md:text-base"
-                onClick={() => setSelectedNav("Home")}
+                onClick={() => {
+                  setSelectedNav("Home");
+                  setIsSheetOpen(false);
+                }}
               >
                 <Library className="h-6 w-6" />
                 <span>Bookify</span>
@@ -101,7 +106,10 @@ export const NavigationComponent = () => {
                   to={to}
                   label={label}
                   isSelected={selectedNav === label}
-                  onClick={() => setSelectedNav(label)}
+                  onClick={() => {
+                    setSelectedNav(label);
+                    setIsSheetOpen(false);
+                  }}
                 />
               ))}
             </nav>

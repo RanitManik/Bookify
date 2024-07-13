@@ -59,7 +59,7 @@ const BookListComponent = () => {
   }
 
   return (
-    <main className="m-auto flex flex-wrap items-stretch justify-center gap-x-4 gap-y-8 py-8 duration-200 animate-in fade-in sm:max-w-[min(90%,_1200px)]">
+    <main className="m-auto flex flex-wrap items-stretch justify-center gap-x-4 gap-y-8 py-8 duration-200 animate-in slide-in-from-bottom sm:max-w-[min(90%,_1200px)]">
       {books.map((book) => (
         <CardForListedBooksComponent
           key={book.id}

@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button.jsx";
 
 export const DataOfflineErrorComponent = ({ dataError }) => {
   return (
-    <main className="min-h-[min(90svh,_1000px)] grid place-items-center content-center items-center gap-6 p-6 text-center">
+    <main className="grid min-h-[min(90svh,_1000px)] place-items-center content-center items-center gap-8 p-6 text-center">
       <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
         408 | {dataError.code}
       </h1>
