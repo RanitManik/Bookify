@@ -45,7 +45,7 @@ export const NavigationComponent = () => {
 
   useEffect(() => {
     const pathname = location.pathname;
-    const matchingNavItem = navItems.find(item => pathname === item.to);
+    const matchingNavItem = navItems.find((item) => pathname === item.to);
     if (matchingNavItem) {
       setSelectedNav(matchingNavItem.label);
     } else {
