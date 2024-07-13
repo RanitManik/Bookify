@@ -40,14 +40,12 @@ export function CardForListedBooksComponent(book) {
       </div>
       <CardHeader>
         <CardTitle className="line-clamp-1">{book?.name}</CardTitle>
-        <CardDescription>
-          by {book.authorName ? book.authorName : book.displayName}
-        </CardDescription>
+        <CardDescription>{book.authorName}</CardDescription>
       </CardHeader>
       <CardContent>
         <p className="line-clamp-3 text-sm text-foreground/90">
-          {book.description ? (
-            book.description
+          {book.bookDescription ? (
+            book.bookDescription
           ) : (
             <>
               This book has a title {book?.name} and this book was written by{" "}
