@@ -1,4 +1,3 @@
-import { NavigationComponent } from "@/components/Navigation.component.jsx";
 import { useNavigate } from "react-router-dom";
 import { useFirebase } from "@/context/firebase.context.jsx";
 import { useEffect } from "react";
@@ -23,7 +22,6 @@ const SettingRoute = () => {
 
   return (
     <>
-      <NavigationComponent initialSelected="Setting" />
       <SettingComponent />
     </>
   );

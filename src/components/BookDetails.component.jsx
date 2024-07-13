@@ -27,7 +27,7 @@ export const BookDetailsComponent = ({ data, bookId }) => {
         setImgUrls(urls);
       }
     };
-    fetchImageUrls().then((r) => console.log(r));
+    fetchImageUrls();
   }, [data, getImageUrl]);
 
   const handlePlaceOrder = () => {
@@ -85,23 +85,46 @@ export const BookDetailsComponent = ({ data, bookId }) => {
         </div>
 
         <div className="m-auto w-fit">
-          {data.name ? <p>{data.name}</p> : <p>No name available</p>}
-          {data.authorName && <p>Author: {data.authorName}</p>}
-          {data.isbn10 && <p>ISBN-10: {data.isbn10}</p>}
-          {data.isbn13 && <p>ISBN-13: {data.isbn13}</p>}
-          {data.price && <p>Price: {data.price}</p>}
-          {data.discount && <p>Discount: {data.discount}%</p>}
-          {data.description && <p>Description: {data.description}</p>}
-          <br />
-          {data.authorDescription && (
-            <p>About the Author: {data.authorDescription}</p>
-          )}
-          {data.itemWeight && <p>Item Weight: {data.itemWeight} g</p>}
-          {data.pages && <p>Print Length: {data.pages} pages</p>}
-          {data.language && <p>Language: {data.language}</p>}
-          {data.countryOfOrigin && (
-            <p>Country of Origin: {data.countryOfOrigin}</p>
-          )}
+          <div>
+            {data.name ? <p>{data.name}</p> : <p>No name available</p>}
+            <br />
+            {data.authorName && <p>Author: {data.authorName}</p>}
+            <br />
+            {data.isbn10 && <p>ISBN-10: {data.isbn10}</p>}
+            <br />
+            {data.isbn13 && <p>ISBN-13: {data.isbn13}</p>}
+            <br />
+            {data.finalPrice && <p>Price: {data.finalPrice}</p>}
+            <br />
+            {data.maxRetailPrice && data.finalPrice && (
+              <p>
+                Discount:{" "}
+                {(
+                  ((data.maxRetailPrice - data.finalPrice) /
+                    data.maxRetailPrice) *
+                  100
+                ).toFixed(2)}
+                %
+              </p>
+            )}
+            <br />
+            {data.bookDescription && <p>Description: {data.bookDescription}</p>}
+            <br />
+            {data.authorDescription && (
+              <p>About the Author: {data.authorDescription}</p>
+            )}
+            <br />
+            {data.itemWeight && <p>Item Weight: {data.itemWeight} g</p>}
+            <br />
+            {data.pages && <p>Print Length: {data.pages} pages</p>}
+            <br />
+            {data.language && <p>Language: {data.language}</p>}
+            <br />
+            {data.countryOfOrigin && (
+              <p>Country of Origin: {data.countryOfOrigin}</p>
+            )}
+          </div>
+
           <input
             type="number"
             value={qty}

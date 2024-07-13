@@ -8,19 +8,24 @@ import SettingRoute from "@/routes/setting.route.jsx";
 import BookDetailsRoute from "@/routes/bookDetails.route.jsx";
 import OrdersRoute from "@/routes/orders.route.jsx";
 import { ProductsRoute } from "@/routes/products.route.jsx";
+import ErrorRoute from "@/routes/error.route.jsx";
+import NavigationRoute from "@/routes/navigation.route.jsx";
 
 function App() {
   return (
     <Routes>
-      <Route index element={<HomeRoute />} />
       <Route path="/register" element={<RegisterRoute />} />
       <Route path="/login" element={<LoginRoute />} />
-      <Route path="/support" element={<SupportRoute />} />
-      <Route path="/setting" element={<SettingRoute />} />
-      <Route path="/list" element={<ListingRoute />} />
-      <Route path="/orders" element={<OrdersRoute />} />
-      <Route path="/products" element={<ProductsRoute />} />
-      <Route path="/book/view/:bookId" element={<BookDetailsRoute />} />
+      <Route path="*" element={<ErrorRoute />} />
+      <Route path="/" element={<NavigationRoute />}>
+        <Route index element={<HomeRoute />} />
+        <Route path="support" element={<SupportRoute />} />
+        <Route path="setting" element={<SettingRoute />} />
+        <Route path="list" element={<ListingRoute />} />
+        <Route path="orders" element={<OrdersRoute />} />
+        <Route path="products" element={<ProductsRoute />} />
+        <Route path="book/view/:bookId" element={<BookDetailsRoute />} />
+      </Route>
     </Routes>
   );
 }

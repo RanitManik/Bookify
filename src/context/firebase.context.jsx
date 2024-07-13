@@ -179,8 +179,9 @@ export const FirebaseProvider = (props) => {
     }
   };
 
-  const getListAllBooks = () => {
-    return getDocs(collection(firestore, "books"));
+  const getListAllBooks = async () => {
+    const docsRef = collection(firestore, "books");
+    return getDocs(docsRef);
   };
 
   const getImageUrl = (path) => {

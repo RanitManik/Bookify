@@ -29,9 +29,9 @@ const NavigationLink = ({ to, label, isSelected, onClick }) => (
   </Link>
 );
 
-export const NavigationComponent = ({ initialSelected = "Home" }) => {
+export const NavigationComponent = () => {
   const { handleSignOut, user } = useFirebase();
-  const [selectedNav, setSelectedNav] = useState(initialSelected);
+  const [selectedNav, setSelectedNav] = useState(null);
   const navigate = useNavigate();
 
   const navItems = [
@@ -51,15 +51,8 @@ export const NavigationComponent = ({ initialSelected = "Home" }) => {
             className="flex items-center gap-2 text-lg font-semibold md:text-base"
           >
             <Library className="h-6 w-6" />
-            <span>Bookify</span>
+            <span className="mr-6">Bookify</span>
           </Link>
-          <NavigationLink
-            to="/"
-            label=""
-            icon={Library}
-            isSelected={false}
-            onClick={() => setSelectedNav("")}
-          />
           {navItems.map(({ label, to }) => (
             <NavigationLink
               key={label}
@@ -83,13 +76,14 @@ export const NavigationComponent = ({ initialSelected = "Home" }) => {
           </SheetTrigger>
           <SheetContent side="left">
             <nav className="grid gap-6 text-lg font-medium">
-              <NavigationLink
-                to="#"
-                label=""
-                icon={Library}
-                isSelected={false}
-                onClick={() => setSelectedNav("")}
-              />
+              <Link
+                to="/"
+                className="flex items-center gap-2 text-lg font-semibold md:text-base"
+                onClick={() => setSelectedNav("Home")}
+              >
+                <Library className="h-6 w-6" />
+                <span>Bookify</span>
+              </Link>
               {navItems.map(({ label, to }) => (
                 <NavigationLink
                   key={label}

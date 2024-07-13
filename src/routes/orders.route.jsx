@@ -1,4 +1,3 @@
-import { NavigationComponent } from "@/components/Navigation.component.jsx";
 import { useEffect } from "react";
 import { useFirebase } from "@/context/firebase.context.jsx";
 import { useNavigate } from "react-router-dom";
@@ -24,7 +23,6 @@ const OrdersRoute = () => {
 
   return (
     <>
-      <NavigationComponent initialSelected="Orders" />
       <BackgroundComponent>
         <OrderListComponent />
       </BackgroundComponent>
