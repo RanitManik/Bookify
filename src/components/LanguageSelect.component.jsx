@@ -8,9 +8,9 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-export function LanguageSelector() {
+export function LanguageSelector({ value, onChange }) {
   return (
-    <Select>
+    <Select value={value} onValueChange={onChange}>
       <SelectTrigger className="w-full">
         <SelectValue placeholder="Select a language" />
       </SelectTrigger>
