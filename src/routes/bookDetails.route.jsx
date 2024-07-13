@@ -36,8 +36,8 @@ const BookDetailsRoute = () => {
             } else {
               setDataError({
                 message:
-                  "The book you are looking for does not exist. It might have been removed or the ID is incorrect.",
-                code: "Not found",
+                  "The book you are looking for does not exist. It may have been removed, or the book ID you entered might be incorrect. Please verify the ID and try again.",
+                code: "Book Not found",
               });
             }
           }
@@ -45,8 +45,8 @@ const BookDetailsRoute = () => {
           if (isMounted) {
             setDataError({
               message:
-                "Could not reach Cloud Firestore. Please check your internet connection and try again.",
-              code: error.code || "unavailable",
+                "The server timed out waiting for your request. Please check your internet connection and try again. If the problem persists, contact support for assistance.",
+              code: "Request timeout",
             });
           }
         } finally {
@@ -73,33 +73,15 @@ const BookDetailsRoute = () => {
 
   if (dataError) {
     switch (dataError.code) {
-      case "unavailable":
-        return (
-          <>
-            <div className="text-center">
-              <DataOfflineErrorComponent dataError={dataError} />
-            </div>
-          </>
-        );
+      case "Request timeout":
+        return <DataOfflineErrorComponent dataError={dataError} />;
       default:
-        return (
-          <>
-            <div className="text-center">
-              <DataErrorComponent dataError={dataError} />
-            </div>
-          </>
-        );
+        return <DataErrorComponent dataError={dataError} />;
     }
   }
 
   if (!data) {
-    return (
-      <>
-        <main className="grid min-h-[80svh] place-items-center">
-          <LoaderCircleComponent />
-        </main>
-      </>
-    );
+    return <LoaderCircleComponent />;
   }
 
   return (

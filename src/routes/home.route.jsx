@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import BackgroundComponent from "@/components/Background.component.jsx";
 import { useFirebase } from "@/context/firebase.context.jsx";
 import BookListComponent from "@/components/BookList.component.jsx";
 import { LoaderCircleComponent } from "@/components/LoaderCircle.component.jsx";
@@ -21,13 +20,7 @@ const HomeRoute = () => {
 
   if (!user) return null;
 
-  return (
-    <>
-      <BackgroundComponent>
-        <BookListComponent />
-      </BackgroundComponent>
-    </>
-  );
+  return <BookListComponent />;
 };
 
 export default HomeRoute;
