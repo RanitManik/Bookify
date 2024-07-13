@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { CircleUser, Menu, Library, Search } from "lucide-react";
 import {
   DropdownMenu,
@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button.jsx";
 import { useFirebase } from "@/context/firebase.context.jsx";
 import {
@@ -31,8 +31,9 @@ const NavigationLink = ({ to, label, isSelected, onClick }) => (
 
 export const NavigationComponent = () => {
   const { handleSignOut, user } = useFirebase();
-  const [selectedNav, setSelectedNav] = useState(null);
   const navigate = useNavigate();
+  const location = useLocation();
+  const [selectedNav, setSelectedNav] = useState(null);
 
   const navItems = [
     { label: "Home", to: "/" },
@@ -41,6 +42,16 @@ export const NavigationComponent = () => {
     { label: "Setting", to: "/setting" },
     { label: "Support", to: "/support" },
   ];
+
+  useEffect(() => {
+    const pathname = location.pathname;
+    const matchingNavItem = navItems.find(item => pathname === item.to);
+    if (matchingNavItem) {
+      setSelectedNav(matchingNavItem.label);
+    } else {
+      setSelectedNav(null); // Reset selectedNav if no match (optional)
+    }
+  }, [location.pathname, navItems]);
 
   return (
     <header className="sticky top-0 z-50 border-b bg-background/70 px-4 backdrop-blur-lg md:px-6">
