@@ -183,7 +183,6 @@ _Feel free to reach out if you have questions or just want to chat about web adv
 - [Piyush Garg's FirebaseContext with React Course](https://www.youtube.com/playlist?list=PLinedj3B30sCw8Qjrct1DRglx4hWQx83C)
 - [Markdown Badges](https://github.com/Ileriayo/markdown-badges)
 - [shields.io Badges](https://shields.io/)
-- [Skill Icons](https://github.com/tandpfun/skill-icons)
 
 ---
 

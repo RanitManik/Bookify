@@ -53,11 +53,11 @@ export const BookDetailsComponent = ({ data, bookId }) => {
                     <div className="p-1">
                       <Card>
                         <CardContent className="flex aspect-square items-center justify-center p-6">
-                          <div className="grid h-[420px] w-[300px] place-items-center">
+                          <div className="h-[420px] w-[300px]">
                             <img
                               src={url}
                               alt={data.name}
-                              className="select-none object-contain"
+                              className="m-auto h-full max-w-full select-none object-contain"
                             />
                           </div>
                         </CardContent>
