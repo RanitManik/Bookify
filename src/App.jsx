@@ -5,7 +5,7 @@ import LoginRoute from "@/routes/login.route.jsx";
 import ListingRoute from "@/routes/listing.route.jsx";
 import SupportRoute from "@/routes/support.route.jsx";
 import SettingRoute from "@/routes/setting.route.jsx";
-import BookDetailsRoute from "@/routes/BookDetails.route.jsx";
+import BookDetailsRoute from "@/routes/bookDetails.route.jsx";
 import OrdersRoute from "@/routes/orders.route.jsx";
 import { ProductsRoute } from "@/routes/products.route.jsx";
 

@@ -4,16 +4,21 @@ import { useEffect } from "react";
 import { NavigationComponent } from "@/components/Navigation.component.jsx";
 import { ProductsComponent } from "@/components/Products.component.jsx";
 import BackgroundComponent from "@/components/Background.component.jsx";
+import { LoaderCircleComponent } from "@/components/LoaderCircle.component.jsx";
 
 export const ProductsRoute = () => {
-  const { user } = useFirebase();
+  const { user, loading } = useFirebase();
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!user) {
+    if (!loading && !user) {
       navigate("/login");
     }
-  }, [user, navigate]);
+  }, [user, loading, navigate]);
+
+  if (loading) {
+    return <LoaderCircleComponent />;
+  }
 
   if (!user) return null;
 

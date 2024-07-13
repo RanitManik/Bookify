@@ -29,7 +29,7 @@ import { initializeAppCheck, ReCaptchaV3Provider } from "firebase/app-check";
 
 const FirebaseContext = createContext(null);
 
-// FirebaseContext configuration
+// Firebase configuration
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
   authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
@@ -42,7 +42,7 @@ const firebaseConfig = {
 
 export const useFirebase = () => useContext(FirebaseContext);
 
-// Initialize FirebaseContext
+// Initialize Firebase
 const firebaseApp = initializeApp(firebaseConfig);
 const firebaseAuth = getAuth(firebaseApp);
 const googleProvider = new GoogleAuthProvider();
@@ -52,25 +52,26 @@ const facebookProvider = new FacebookAuthProvider();
 const firestore = getFirestore(firebaseApp);
 const storage = getStorage(firebaseApp);
 
-// enable firebase analytics
+// Enable Firebase analytics
 // eslint-disable-next-line no-unused-vars
 const analytics = getAnalytics(firebaseApp);
 
-// enable firebase appCheck
+// Enable Firebase AppCheck
 // eslint-disable-next-line no-unused-vars
 const appCheck = initializeAppCheck(firebaseApp, {
   provider: new ReCaptchaV3Provider(import.meta.env.VITE_RECAPTCHA_SITE_KEY),
-
   isTokenAutoRefreshEnabled: true,
 });
 
 export const FirebaseProvider = (props) => {
   const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true); // Add loading state
   const [error, setError] = useState(null);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(firebaseAuth, (user) => {
       setUser(user || null);
+      setLoading(false); // Set loading to false after authentication check
     });
     return () => unsubscribe();
   }, []);
@@ -225,6 +226,7 @@ export const FirebaseProvider = (props) => {
         handleCreateNewListing,
         handleSignOut,
         user,
+        loading, // Provide loading state to context
         error,
         getListAllBooks,
         getBookById,
