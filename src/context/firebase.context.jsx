@@ -191,6 +191,10 @@ export const FirebaseProvider = (props) => {
 
   let lastVisible = null;
 
+  const resetPagination = () => {
+    lastVisible = null;
+  };
+
   const getListBooks = async (limitCount = 12, nextPage = true) => {
     const docsRef = collection(firestore, "books");
 
@@ -203,7 +207,7 @@ export const FirebaseProvider = (props) => {
     }
     try {
       const querySnapshot = await getDocs(booksQuery);
-      console.log(querySnapshot);
+
       if (querySnapshot.docs.length > 0) {
         lastVisible = querySnapshot.docs[querySnapshot.docs.length - 1];
       }
@@ -265,6 +269,7 @@ export const FirebaseProvider = (props) => {
         handleUserProfileUpdate,
         placeOrder,
         fetchMyProducts,
+        resetPagination,
       }}
     >
       {props.children}

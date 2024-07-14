@@ -15,6 +15,7 @@ import { FileInputComponent } from "@/components/FileInput.component.jsx";
 import { Textarea } from "@/components/ui/textarea.jsx";
 import { CountrySelectorComponent } from "@/components/CountrySelect.component.jsx";
 import { LanguageSelector } from "@/components/LanguageSelect.component.jsx";
+import { Loader2 } from "lucide-react";
 
 export function ListingFormComponent() {
   const [name, setName] = useState("");
@@ -36,9 +37,11 @@ export function ListingFormComponent() {
   const [initialReleaseDate, setInitialReleaseDate] = useState("");
 
   const { handleCreateNewListing } = useFirebase();
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     const listingData = {
       name,
       authorName,
@@ -58,12 +61,18 @@ export function ListingFormComponent() {
       publicationDate,
       initialReleaseDate,
     };
-    handleCreateNewListing(listingData);
+    try {
+      await handleCreateNewListing(listingData);
+    } catch (error) {
+      console.error("Error creating listing:", error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleCoverFileChange = (e) => {
     const file = e.target.files[0];
-    if (!file) return; // User canceled file selection
+    if (!file) return;
     if (!file.type.startsWith("image/")) {
       alert("Only image files are allowed.");
       return;
@@ -324,8 +333,13 @@ export function ListingFormComponent() {
                 />
               </div>
             </div>
-            <Button type="submit" className="w-full">
-              <Share className="mr-2 h-4 w-4" /> Publish Book
+            <Button type="submit" className="w-full" disabled={loading}>
+              {loading ? (
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+              ) : (
+                <Share className="mr-2 h-4 w-4" />
+              )}
+              {loading ? "Publishing..." : "Publish Book"}
             </Button>
           </form>
         </CardContent>

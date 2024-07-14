@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button.jsx";
 import { Loader2 } from "lucide-react";
 
 const BookListComponent = () => {
-  const { getListBooks } = useFirebase();
+  const { getListBooks, resetPagination } = useFirebase(); // Destructure resetPagination
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(true);
   const [dataError, setDataError] = useState(null);
@@ -16,6 +16,8 @@ const BookListComponent = () => {
   const [hasMore, setHasMore] = useState(true);
 
   useEffect(() => {
+    resetPagination();
+
     const fetchBooks = async () => {
       setLoading(true);
       setDataError(null);
@@ -50,7 +52,7 @@ const BookListComponent = () => {
     };
 
     fetchBooks();
-  }, [getListBooks]);
+  }, [getListBooks, resetPagination]);
 
   const fetchNextPage = async () => {
     if (!hasMore || isNextPageLoading) return;
