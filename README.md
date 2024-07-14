@@ -1,17 +1,17 @@
 <h1>Bookify</h1>
 
-Welcome to **Bookify**! This project, inspired by [Piyush Garg's comprehensive FirebaseContext with React course](https://www.youtube.com/playlist?list=PLinedj3B30sCw8Qjrct1DRglx4hWQx83C), leverages the power of **FirebaseContext** and **React** to deliver a seamless platform for book transactions. Bookify is designed with a focus on user experience and efficiency, utilizing **Firestore** for robust and scalable data storage. As a serverless application, Bookify offers unparalleled flexibility and scalability, making it an ideal choice for users seeking a modern and efficient book trading solution. Additionally, the integration of **shadcn** ensures a polished and dynamic user interface, enhancing the overall experience.
+Welcome to **Bookify**! This project, inspired by [Piyush Garg's comprehensive Firebase with React course](https://www.youtube.com/playlist?list=PLinedj3B30sCw8Qjrct1DRglx4hWQx83C), leverages the power of **Firebase** and **React** to deliver a seamless platform for book transactions.
 
 ## Table of Contents
 
 - [Overview](#overview)
-    - [Why Bookify?](#why-bookify)
+    - [Why Bookify?](#what-is-bookify)
     - [Technologies Used](#technologies-used)
     - [Features](#features)
 - [Getting Started](#getting-started)
     - [Prerequisites](#prerequisites)
     - [Installation](#installation)
-    - [FirebaseContext Configuration](#firebase-configuration)
+    - [FirebaseContext Configuration](#firebasecontext-configuration)
     - [Available Scripts](#available-scripts)
 - [Project Structure](#project-structure)
 - [Contributing](#contributing)
@@ -20,9 +20,9 @@ Welcome to **Bookify**! This project, inspired by [Piyush Garg's comprehensive F
 
 ## Overview
 
-### Why Bookify?
+### What is Bookify?
 
-Bookify utilizes the powerful combination of FirebaseContext and React to offer users a seamless platform for buying and selling books. The app is designed with a focus on user experience and efficiency, using Firestore database to store information. It operates as a serverless application, providing flexibility and scalability for users.
+ Bookify is designed with a focus on user experience and efficiency, utilizing **Firestore** for robust and scalable data storage. As a serverless application, Bookify offers unparalleled flexibility and scalability, making it an ideal choice for users seeking a modern and efficient book trading solution. Additionally, the integration of **shadcn** ensures a polished and dynamic user interface, enhancing the overall experience.
 
 ### Technologies Used
 
