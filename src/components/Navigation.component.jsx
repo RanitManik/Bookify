@@ -58,7 +58,7 @@ export const NavigationComponent = () => {
   return (
     <header className="sticky top-0 z-50 border-b bg-background/70 px-4 backdrop-blur-lg md:px-6">
       <div className="m-auto flex h-16 max-w-[1900px] items-center gap-6">
-        <nav className="hidden flex-col gap-6 text-lg font-medium lg:flex lg:flex-row lg:items-center lg:text-sm lg:gap-6">
+        <nav className="hidden flex-col gap-6 text-lg font-medium lg:flex lg:flex-row lg:items-center lg:gap-6 lg:text-sm">
           <Link
             to="/"
             className="flex items-center gap-2 text-lg font-semibold md:text-base"

@@ -114,6 +114,10 @@ export const BookDetailsComponent = ({ data, bookId }) => {
               <p>About the Author: {data.authorDescription}</p>
             )}
             <br />
+            {data.publisherDescription && (
+              <p>About the Publisher: {data.publisherDescription}</p>
+            )}
+            <br />
             {data.itemWeight && <p>Item Weight: {data.itemWeight} g</p>}
             <br />
             {data.pages && <p>Print Length: {data.pages} pages</p>}

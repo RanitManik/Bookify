@@ -1,0 +1,26 @@
+{
+  "users": {
+    "userID": {
+      "booksCreated": {
+        "bookID": {
+          "bookDocumentID": "field"
+        }
+      },
+      "booksOrdered": {
+        "bookID": {
+          "bookDocumentID": "field"
+        }
+      }
+    }
+  },
+  "books": {
+    "bookID": {
+      "orders": {
+        "orderID": {
+          "orderSpecificFields": "fields"
+        }
+      },
+      "bookSpecificFields": "fields"
+    }
+  }
+}

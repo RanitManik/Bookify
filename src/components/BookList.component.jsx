@@ -4,33 +4,38 @@ import { CardForListedBooksComponent } from "@/components/CardForListedBooks.com
 import { LoaderCircleComponent } from "@/components/LoaderCircle.component.jsx";
 import { DataOfflineErrorComponent } from "@/components/DataOfflineError.component.jsx";
 import { NoBookDataErrorComponent } from "@/components/NoBookDataError.component.jsx";
+import { Button } from "@/components/ui/button.jsx";
+import { Loader2 } from "lucide-react";
 
 const BookListComponent = () => {
-  const { getListAllBooks } = useFirebase();
+  const { getListBooks } = useFirebase();
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(true);
   const [dataError, setDataError] = useState(null);
+  const [isNextPageLoading, setIsNextPageLoading] = useState(false);
+  const [hasMore, setHasMore] = useState(true);
 
   useEffect(() => {
     const fetchBooks = async () => {
       setLoading(true);
       setDataError(null);
       try {
-        const booksSnapshot = await getListAllBooks();
-
+        const booksSnapshot = await getListBooks();
         if (booksSnapshot) {
-          // Check if the data is from the cache
           const isFromCache = booksSnapshot.metadata.fromCache;
           if (isFromCache) {
             console.warn("Data is from cache.");
-            // Handle case where books might be empty due to cache
             setDataError({
               message:
                 "The server timed out waiting for your request. Please check your internet connection and try again. If the problem persists, contact support for assistance.",
               code: "Request timeout",
             });
           } else {
-            setBooks(booksSnapshot.docs);
+            setBooks(
+              booksSnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() })),
+            );
+
+            setHasMore(booksSnapshot.docs.length > 0);
           }
         } else {
           console.warn("No books found in the fetched snapshot.");
@@ -38,13 +43,40 @@ const BookListComponent = () => {
         }
       } catch (err) {
         console.error("Error fetching books:", err);
+        setDataError(err.message);
       } finally {
         setLoading(false);
       }
     };
 
     fetchBooks();
-  }, [getListAllBooks]);
+  }, [getListBooks]);
+
+  const fetchNextPage = async () => {
+    if (!hasMore || isNextPageLoading) return;
+
+    setIsNextPageLoading(true);
+    setDataError(null);
+    try {
+      const booksSnapshot = await getListBooks(12, true);
+      if (booksSnapshot) {
+        const newBooks = booksSnapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setBooks((prevBooks) => [...prevBooks, ...newBooks]);
+        setHasMore(booksSnapshot.docs.length > 0);
+      } else {
+        console.warn("No more books to fetch.");
+        setHasMore(false);
+      }
+    } catch (err) {
+      console.error("Error fetching next page:", err);
+      setDataError(err.message);
+    } finally {
+      setIsNextPageLoading(false);
+    }
+  };
 
   if (loading) {
     return <LoaderCircleComponent />;
@@ -59,14 +91,22 @@ const BookListComponent = () => {
   }
 
   return (
-    <main className="m-auto flex flex-wrap items-stretch justify-center gap-x-4 gap-y-8 py-8 duration-200 animate-in fade-in sm:max-w-[min(90%,_1200px)]">
+    <main className="relative m-auto mb-20 flex flex-wrap items-stretch justify-center gap-x-4 gap-y-8 pb-20 pt-10 duration-200 animate-in fade-in sm:max-w-[min(90%,_1200px)]">
       {books.map((book) => (
-        <CardForListedBooksComponent
-          key={book.id}
-          id={book.id}
-          {...book.data()}
-        />
+        <CardForListedBooksComponent key={book.id} id={book.id} {...book} />
       ))}
+      <div className="absolute bottom-0">
+        {isNextPageLoading ? (
+          <Button disabled>
+            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+            Please wait
+          </Button>
+        ) : (
+          <Button onClick={fetchNextPage} disabled={!hasMore}>
+            {hasMore ? "See More" : "No more books available"}
+          </Button>
+        )}
+      </div>
     </main>
   );
 };

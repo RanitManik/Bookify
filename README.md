@@ -5,7 +5,7 @@ Welcome to **Bookify**! This project, inspired by [Piyush Garg's comprehensive F
 ## Table of Contents
 
 - [Overview](#overview)
-    - [Why Bookify?](#what-is-bookify)
+    - [What is Bookify?](#what-is-bookify)
     - [Technologies Used](#technologies-used)
     - [Features](#features)
 - [Getting Started](#getting-started)
@@ -187,5 +187,5 @@ _Feel free to reach out if you have questions or just want to chat about web adv
 ---
 
 <p align="center">
-   Thank you for using <strong>Bookify</strong>! Happy coding! 📚🚀
+   Thank you for reviewing <strong>Bookify</strong>! Happy coding! 📚🚀
 </p>

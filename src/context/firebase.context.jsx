@@ -21,8 +21,10 @@ import {
   getDoc,
   getDocs,
   getFirestore,
+  limit,
   query,
   where,
+  startAfter,
 } from "firebase/firestore";
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 import { initializeAppCheck, ReCaptchaV3Provider } from "firebase/app-check";
@@ -65,13 +67,13 @@ const appCheck = initializeAppCheck(firebaseApp, {
 
 export const FirebaseProvider = (props) => {
   const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true); // Add loading state
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(firebaseAuth, (user) => {
       setUser(user || null);
-      setLoading(false); // Set loading to false after authentication check
+      setLoading(false);
     });
     return () => unsubscribe();
   }, []);
@@ -141,7 +143,7 @@ export const FirebaseProvider = (props) => {
       const imageURLs = await Promise.all(uploadTasks);
 
       // Add book listing to Firestore
-      await addDoc(collection(firestore, "books"), {
+      const docRef = await addDoc(collection(firestore, "books"), {
         ...rest,
         imageURLs,
         coverImgURL,
@@ -149,6 +151,14 @@ export const FirebaseProvider = (props) => {
         userEmail: user.email,
         displayName: user.displayName,
         photoURL: user.photoURL,
+      });
+
+      // Get the newly created document ID
+      const bookDocumentID = docRef.id;
+
+      // Add user listing reference to Firestore
+      await addDoc(collection(firestore, `users/${user.uid}/booksCreated`), {
+        bookDocumentID,
       });
 
       console.log("Listing created successfully");
@@ -179,9 +189,29 @@ export const FirebaseProvider = (props) => {
     }
   };
 
-  const getListAllBooks = async () => {
+  let lastVisible = null;
+
+  const getListBooks = async (limitCount = 12, nextPage = true) => {
     const docsRef = collection(firestore, "books");
-    return getDocs(docsRef);
+
+    let booksQuery;
+
+    if (nextPage && lastVisible) {
+      booksQuery = query(docsRef, startAfter(lastVisible), limit(limitCount));
+    } else {
+      booksQuery = query(docsRef, limit(limitCount));
+    }
+    try {
+      const querySnapshot = await getDocs(booksQuery);
+      console.log(querySnapshot);
+      if (querySnapshot.docs.length > 0) {
+        lastVisible = querySnapshot.docs[querySnapshot.docs.length - 1];
+      }
+
+      return querySnapshot;
+    } catch (error) {
+      console.error("Error getting list books:", error.message);
+    }
   };
 
   const getImageUrl = (path) => {
@@ -200,7 +230,7 @@ export const FirebaseProvider = (props) => {
       userEmail: user.email,
       displayName: user.displayName,
       photoURL: user.photoURL,
-      Quantity: qty,
+      quantity: qty,
     });
     console.log(result);
   };
@@ -227,9 +257,9 @@ export const FirebaseProvider = (props) => {
         handleCreateNewListing,
         handleSignOut,
         user,
-        loading, // Provide loading state to context
+        loading,
         error,
-        getListAllBooks,
+        getListBooks,
         getBookById,
         getImageUrl,
         handleUserProfileUpdate,
