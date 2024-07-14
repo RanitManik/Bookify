@@ -25,7 +25,7 @@ const NavigationLink = ({ to, label, isSelected, onClick }) => (
     className={`flex items-center gap-2 transition-colors hover:text-foreground ${isSelected ? "text-foreground" : "text-muted-foreground"}`}
     onClick={onClick}
   >
-    {label && <span>{label}</span>}
+    {label && <span className="whitespace-nowrap">{label}</span>}
   </Link>
 );
 
@@ -39,6 +39,7 @@ export const NavigationComponent = () => {
   const navItems = [
     { label: "Home", to: "/" },
     { label: "Listing", to: "/list" },
+    { label: "Orders", to: "/orders" },
     { label: "Products", to: "/products" },
     { label: "Setting", to: "/setting" },
     { label: "Support", to: "/support" },
@@ -57,7 +58,7 @@ export const NavigationComponent = () => {
   return (
     <header className="sticky top-0 z-50 border-b bg-background/70 px-4 backdrop-blur-lg md:px-6">
       <div className="m-auto flex h-16 max-w-[1900px] items-center gap-6">
-        <nav className="hidden flex-col gap-6 text-lg font-medium md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6">
+        <nav className="hidden flex-col gap-6 text-lg font-medium lg:flex lg:flex-row lg:items-center lg:text-sm lg:gap-6">
           <Link
             to="/"
             className="flex items-center gap-2 text-lg font-semibold md:text-base"
@@ -80,7 +81,7 @@ export const NavigationComponent = () => {
             <Button
               variant="outline"
               size="icon"
-              className="shrink-0 md:hidden"
+              className="shrink-0 lg:hidden"
               onClick={() => setIsSheetOpen(true)}
             >
               <Menu className="h-5 w-5" />
@@ -122,7 +123,7 @@ export const NavigationComponent = () => {
               <Input
                 type="search"
                 placeholder="Search books..."
-                className="pl-8 sm:w-[300px] md:w-[200px] lg:w-[300px]"
+                className="pl-8 sm:w-[300px]"
               />
             </div>
           </form>
