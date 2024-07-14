@@ -1,6 +1,6 @@
 <h1>Bookify</h1>
 
-Welcome to **Bookify**! This project, inspired by [Piyush Garg's comprehensive Firebase with React course](https://www.youtube.com/playlist?list=PLinedj3B30sCw8Qjrct1DRglx4hWQx83C), leverages the power of **Firebase** and **React** to deliver a seamless platform for book transactions.
+Welcome to **Bookify**! This project harnesses the capabilities of **Firebase** and **React** to provide a seamless platform for book transactions, featuring an interactive and modern design for an enhanced user experience.
 
 ## Table of Contents
 
