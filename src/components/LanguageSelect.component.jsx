@@ -17,17 +17,17 @@ export function LanguageSelector({ value, onChange }) {
       <SelectContent>
         <SelectGroup>
           <SelectLabel>Languages</SelectLabel>
-          <SelectItem value="en">English</SelectItem>
-          <SelectItem value="es">Spanish</SelectItem>
-          <SelectItem value="fr">French</SelectItem>
-          <SelectItem value="de">German</SelectItem>
-          <SelectItem value="zh">Chinese</SelectItem>
-          <SelectItem value="ja">Japanese</SelectItem>
+          <SelectItem value="English">English</SelectItem>
+          <SelectItem value="Spanish">Spanish</SelectItem>
+          <SelectItem value="French">French</SelectItem>
+          <SelectItem value="German">German</SelectItem>
+          <SelectItem value="Chinese">Chinese</SelectItem>
+          <SelectItem value="Japanese">Japanese</SelectItem>
           <SelectItem value="ko">Korean</SelectItem>
-          <SelectItem value="ar">Arabic</SelectItem>
-          <SelectItem value="ru">Russian</SelectItem>
-          <SelectItem value="pt">Portuguese</SelectItem>
-          <SelectItem value="hi">Hindi</SelectItem>
+          <SelectItem value="Korean">Arabic</SelectItem>
+          <SelectItem value="Russian">Russian</SelectItem>
+          <SelectItem value="Portuguese">Portuguese</SelectItem>
+          <SelectItem value="Hindi">Hindi</SelectItem>
         </SelectGroup>
       </SelectContent>
     </Select>

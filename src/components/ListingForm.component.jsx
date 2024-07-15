@@ -110,9 +110,7 @@ export function ListingFormComponent() {
             {/* Basic Information */}
             <div className="grid gap-4 sm:grid-cols-2">
               <div className="grid gap-2">
-                <Label htmlFor="name">
-                  Book Name <span>*</span>
-                </Label>
+                <Label htmlFor="name">Book Name</Label>
                 <Input
                   id="name"
                   onChange={handleChange}
@@ -125,9 +123,7 @@ export function ListingFormComponent() {
                 />
               </div>
               <div className="grid gap-2">
-                <Label htmlFor="authorName">
-                  Author Name <span>*</span>
-                </Label>
+                <Label htmlFor="authorName">Author Name</Label>
                 <Input
                   id="authorName"
                   onChange={handleChange}
@@ -170,9 +166,7 @@ export function ListingFormComponent() {
             {/* Other Details */}
             <div className="grid gap-4 sm:grid-cols-2">
               <div className="grid gap-2">
-                <Label htmlFor="maxRetailPrice">
-                  Price (MRP) <span>*</span>
-                </Label>
+                <Label htmlFor="maxRetailPrice">Price (MRP)</Label>
                 <Input
                   id="maxRetailPrice"
                   onChange={handleChange}
@@ -185,9 +179,7 @@ export function ListingFormComponent() {
                 />
               </div>
               <div className="grid gap-2">
-                <Label htmlFor="finalPrice">
-                  Final Price <span>*</span>
-                </Label>
+                <Label htmlFor="finalPrice">Final Price</Label>
                 <Input
                   id="finalPrice"
                   onChange={handleChange}
@@ -202,9 +194,7 @@ export function ListingFormComponent() {
             </div>
             {/* File Inputs */}
             <div className="grid gap-2">
-              <Label htmlFor="bookCoverPicture">
-                Book Cover Picture <span>*</span>
-              </Label>
+              <Label htmlFor="bookCoverPicture">Book Cover Picture</Label>
               <FileInputComponent
                 id="bookCoverPicture"
                 onChange={handleCoverFileChange}
@@ -227,8 +217,9 @@ export function ListingFormComponent() {
                 onChange={handleChange}
                 value={formData.bookDescription}
                 minLength="150"
-                maxLength="1000"
+                maxLength="500"
                 placeholder="Provide a brief description of the book"
+                required
               />
             </div>
             <div className="grid gap-2">
@@ -238,16 +229,15 @@ export function ListingFormComponent() {
                 onChange={handleChange}
                 value={formData.authorDescription}
                 minLength="150"
-                maxLength="1000"
+                maxLength="500"
                 placeholder="Provide a brief description of the author"
+                required
               />
             </div>
             {/* Selectors */}
             <div className="grid gap-4 sm:grid-cols-2">
               <div className="grid gap-2">
-                <Label htmlFor="category">
-                  Book Category <span>*</span>
-                </Label>
+                <Label htmlFor="category">Book Category</Label>
                 <CategorySelector
                   id="category"
                   onChange={(value) =>
@@ -257,9 +247,7 @@ export function ListingFormComponent() {
                 />
               </div>
               <div className="grid gap-2">
-                <Label htmlFor="condition">
-                  Condition <span>*</span>
-                </Label>
+                <Label htmlFor="condition">Condition</Label>
                 <ConditionSelector
                   id="condition"
                   onChange={(value) =>
