@@ -5,7 +5,7 @@ import { LoaderCircleComponent } from "@/components/LoaderCircle.component.jsx";
 import { DataOfflineErrorComponent } from "@/components/DataOfflineError.component.jsx";
 import { NoBookDataErrorComponent } from "@/components/NoBookDataError.component.jsx";
 import { Button } from "@/components/ui/button.jsx";
-import { Loader2 } from "lucide-react";
+import { Loader2, ChevronDown } from "lucide-react";
 
 const BookListComponent = () => {
   const { getListBooks, resetPagination } = useFirebase();
@@ -116,6 +116,7 @@ const BookListComponent = () => {
         ) : (
           <Button onClick={fetchNextPage} disabled={!hasMore}>
             {hasMore ? "See More" : "No more books available"}
+            {hasMore ? <ChevronDown className="ml-2 h-4 w-4" /> : null}
           </Button>
         )}
       </div>
