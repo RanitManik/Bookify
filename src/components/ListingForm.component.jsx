@@ -105,7 +105,7 @@ export function ListingFormComponent() {
   };
 
   return (
-    <div className="grid min-h-[min(90vh,_1080px)] place-items-center py-8 duration-200 animate-in fade-in">
+    <div className="grid min-h-[min(90vh,_1080px)] place-items-center py-8 duration-300 animate-in fade-in slide-in-from-bottom-48">
       <Card className="mx-auto w-full max-w-2xl">
         <CardHeader>
           <CardTitle className="text-2xl">List Your Books</CardTitle>

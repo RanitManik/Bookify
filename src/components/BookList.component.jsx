@@ -103,7 +103,7 @@ const BookListComponent = () => {
   }
 
   return (
-    <main className="relative m-auto mb-20 flex flex-wrap items-stretch justify-center gap-x-4 gap-y-8 pb-20 pt-10 duration-200 animate-in fade-in sm:max-w-[min(90%,_1200px)]">
+    <main className="relative m-auto mb-20 flex flex-wrap items-stretch justify-center gap-x-4 gap-y-8 pb-20 pt-10 duration-200 animate-in fade-in slide-in-from-bottom-48 sm:max-w-[min(90%,_1200px)]">
       {books.map((book) => (
         <CardForListedBooksComponent key={book.id} id={book.id} {...book} />
       ))}
