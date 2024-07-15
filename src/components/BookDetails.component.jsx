@@ -90,7 +90,7 @@ export const BookDetailsComponent = ({ data, bookId }) => {
           </div>
         </div>
 
-        <div className="overflow-hidden text-ellipsis whitespace-nowrap">
+        <div>
           <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
             {data.name}
           </h1>
