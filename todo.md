@@ -11,5 +11,5 @@
 - [ ] Enable Web Push Notifications
 
 ## Website Functionalities
-- [ ] Build Pagination for the Website
+- [x] Build Pagination for the Website
 - [ ] Implement a Search Feature

@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button.jsx";
 import { Loader2 } from "lucide-react";
 
 const BookListComponent = () => {
-  const { getListBooks, resetPagination } = useFirebase(); // Destructure resetPagination
+  const { getListBooks, resetPagination } = useFirebase();
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(true);
   const [dataError, setDataError] = useState(null);
@@ -62,12 +62,22 @@ const BookListComponent = () => {
     try {
       const booksSnapshot = await getListBooks(12, true);
       if (booksSnapshot) {
-        const newBooks = booksSnapshot.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        }));
-        setBooks((prevBooks) => [...prevBooks, ...newBooks]);
-        setHasMore(booksSnapshot.docs.length > 0);
+        const isFromCache = booksSnapshot.metadata.fromCache;
+        if (isFromCache) {
+          console.warn("Data is from cache.");
+          setDataError({
+            message:
+              "The server timed out waiting for your request. Please check your internet connection and try again. If the problem persists, contact support for assistance.",
+            code: "Request timeout",
+          });
+        } else {
+          const newBooks = booksSnapshot.docs.map((doc) => ({
+            id: doc.id,
+            ...doc.data(),
+          }));
+          setBooks((prevBooks) => [...prevBooks, ...newBooks]);
+          setHasMore(booksSnapshot.docs.length > 0);
+        }
       } else {
         console.warn("No more books to fetch.");
         setHasMore(false);
