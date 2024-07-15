@@ -280,7 +280,7 @@ export function ListingFormComponent() {
                 onChange={handleChange}
                 value={formData.bookDescription}
                 minLength="150"
-                maxLength="500"
+                maxLength="1000"
                 placeholder="Provide a brief description of the book"
                 required
               />
@@ -294,7 +294,7 @@ export function ListingFormComponent() {
                 onChange={handleChange}
                 value={formData.authorDescription}
                 minLength="150"
-                maxLength="500"
+                maxLength="1000"
                 placeholder="Provide a brief description of the author"
                 required
               />
@@ -308,7 +308,7 @@ export function ListingFormComponent() {
                 onChange={handleChange}
                 value={formData.publisherDescription}
                 minLength="150"
-                maxLength="500"
+                maxLength="1000"
                 placeholder="Provide a brief description of the publisher"
                 required
               />

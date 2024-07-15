@@ -16,7 +16,7 @@ import { Skeleton } from "@/components/ui/skeleton.jsx";
 export const BookDetailsComponent = ({ data, bookId }) => {
   const { getImageUrl, placeOrder } = useFirebase();
   const [imgUrls, setImgUrls] = useState([]);
-  const plugin = useRef(Autoplay({ delay: 2000, stopOnInteraction: true }));
+  const plugin = useRef(Autoplay({ delay: 2000, stopOnInteraction: false }));
 
   useEffect(() => {
     const fetchImageUrls = async () => {
@@ -87,7 +87,11 @@ export const BookDetailsComponent = ({ data, bookId }) => {
               <CarouselPrevious aria-label="Previous image" />
               <CarouselNext aria-label="Next image" />
             </Carousel>
-            <Button className="my-4 w-full" onClick={handlePlaceOrder} aria-label="Place order">
+            <Button
+              className="my-4 w-full"
+              onClick={handlePlaceOrder}
+              aria-label="Place order"
+            >
               Buy Now
             </Button>
           </div>
@@ -128,54 +132,52 @@ export const BookDetailsComponent = ({ data, bookId }) => {
             )}
           </div>
 
+          {data?.bookDescription && (
+            <p className="mt-4 leading-7">{data.bookDescription}</p>
+          )}
+
           <div className="my-6 w-full overflow-y-auto">
-            <table className="w-full">
+            <h2 className="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight">
+              Book Details
+            </h2>
+            <table className="mt-4 w-full">
               <thead>
-              <tr className="border-t bg-muted">
-                <th className="border px-4 py-2 text-left font-bold">
-                  Property
-                </th>
-                <th className="border px-4 py-2 text-left font-bold">
-                  Value
-                </th>
-              </tr>
+                <tr className="border-t bg-muted">
+                  <th className="border px-4 py-2 text-left font-bold">
+                    Property
+                  </th>
+                  <th className="border px-4 py-2 text-left font-bold">
+                    Details
+                  </th>
+                </tr>
               </thead>
               <tbody>
-              {data?.isbn10 && renderTableRow("ISBN 10", data.isbn10)}
-              {data?.isbn13 && renderTableRow("ISBN 13", data.isbn13)}
-              {data?.category && renderTableRow("Book Category", data.category)}
-              {data?.condition && renderTableRow("Condition", data.condition)}
-              {data?.language && renderTableRow("Language", data.language)}
-              {data?.countryOfOrigin && renderTableRow("Country of Origin", data.countryOfOrigin)}
-              {data?.totalBooks && renderTableRow("Total Stock Left", data.totalBooks)}
-              {data?.edition && renderTableRow("Edition", data.edition)}
-              {data?.dimensions && renderTableRow("Dimensions", data.dimensions)}
-              {data?.format && renderTableRow("Format", data.format)}
-              {data?.ageRange && renderTableRow("Age Range", data.ageRange)}
-              {data?.awards && renderTableRow("Awards", data.awards)}
+                {data?.isbn10 && renderTableRow("ISBN 10", data.isbn10)}
+                {data?.isbn13 && renderTableRow("ISBN 13", data.isbn13)}
+                {data?.category &&
+                  renderTableRow("Book Category", data.category)}
+                {data?.condition && renderTableRow("Condition", data.condition)}
+                {data?.language && renderTableRow("Language", data.language)}
+                {data?.countryOfOrigin &&
+                  renderTableRow("Country of Origin", data.countryOfOrigin)}
+                {data?.totalBooks &&
+                  renderTableRow("Total Stock Left", data.totalBooks)}
+                {data?.edition && renderTableRow("Edition", data.edition)}
+                {data?.dimensions &&
+                  renderTableRow("Dimensions", data.dimensions)}
+                {data?.format && renderTableRow("Format", data.format)}
+                {data?.ageRange && renderTableRow("Age Range", data.ageRange)}
+                {data?.awards && renderTableRow("Awards", data.awards)}
               </tbody>
             </table>
           </div>
-
-          {data?.bookDescription && (
-            <>
-              <h2 className="mt-8 scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight">
-                Description
-              </h2>
-              <p className="leading-7 mt-4">
-                {data.bookDescription}
-              </p>
-            </>
-          )}
 
           {data?.authorDescription && (
             <>
               <h2 className="mt-8 scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight">
                 About the Author
               </h2>
-              <p className="leading-7 mt-4">
-                {data.authorDescription}
-              </p>
+              <p className="mt-4 leading-7">{data.authorDescription}</p>
             </>
           )}
 
@@ -184,9 +186,7 @@ export const BookDetailsComponent = ({ data, bookId }) => {
               <h2 className="mt-8 scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight">
                 About the Publisher
               </h2>
-              <p className="leading-7 mt-4">
-                {data.publisherDescription}
-              </p>
+              <p className="mt-4 leading-7">{data.publisherDescription}</p>
             </>
           )}
         </div>
