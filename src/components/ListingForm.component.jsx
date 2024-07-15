@@ -30,10 +30,23 @@ export function ListingFormComponent() {
     bookOtherPictures: [],
     bookDescription: "",
     authorDescription: "",
+    publisherDescription: "",
+    itemWeight: "",
+    pages: "",
+    language: "",
+    countryOfOrigin: "",
+    publicationDate: "",
+    initialReleaseDate: "",
+    totalBooks: "",
     category: "",
     condition: "",
-    countryOfOrigin: "",
-    language: "",
+    edition: "",
+    dimensions: "",
+    publisher: "",
+    format: "",
+    ageRange: "",
+    awards: "",
+    tags: "",
   });
   const [loading, setLoading] = useState(false);
   const { handleCreateNewListing } = useFirebase();
@@ -110,7 +123,9 @@ export function ListingFormComponent() {
             {/* Basic Information */}
             <div className="grid gap-4 sm:grid-cols-2">
               <div className="grid gap-2">
-                <Label htmlFor="name">Book Name</Label>
+                <Label htmlFor="name">
+                  Book Name <span>*</span>
+                </Label>
                 <Input
                   id="name"
                   onChange={handleChange}
@@ -123,7 +138,9 @@ export function ListingFormComponent() {
                 />
               </div>
               <div className="grid gap-2">
-                <Label htmlFor="authorName">Author Name</Label>
+                <Label htmlFor="authorName">
+                  Author Name <span>*</span>
+                </Label>
                 <Input
                   id="authorName"
                   onChange={handleChange}
@@ -139,7 +156,9 @@ export function ListingFormComponent() {
             {/* ISBN and Prices */}
             <div className="grid gap-4 sm:grid-cols-2">
               <div className="grid gap-2">
-                <Label htmlFor="isbn10">ISBN-10</Label>
+                <Label htmlFor="isbn10">
+                  ISBN-10 <span>*</span>
+                </Label>
                 <Input
                   id="isbn10"
                   onChange={handleChange}
@@ -148,6 +167,7 @@ export function ListingFormComponent() {
                   max="9999999999"
                   type="number"
                   placeholder="e.g., 8119555600"
+                  required
                 />
               </div>
               <div className="grid gap-2">
@@ -166,7 +186,9 @@ export function ListingFormComponent() {
             {/* Other Details */}
             <div className="grid gap-4 sm:grid-cols-2">
               <div className="grid gap-2">
-                <Label htmlFor="maxRetailPrice">Price (MRP)</Label>
+                <Label htmlFor="maxRetailPrice">
+                  Price (MRP) <span>*</span>
+                </Label>
                 <Input
                   id="maxRetailPrice"
                   onChange={handleChange}
@@ -179,7 +201,9 @@ export function ListingFormComponent() {
                 />
               </div>
               <div className="grid gap-2">
-                <Label htmlFor="finalPrice">Final Price</Label>
+                <Label htmlFor="finalPrice">
+                  Final Price <span>*</span>
+                </Label>
                 <Input
                   id="finalPrice"
                   onChange={handleChange}
@@ -187,14 +211,48 @@ export function ListingFormComponent() {
                   type="number"
                   required
                   min="10"
-                  max={formData.maxRetailPrice || "10000"}
+                  max="10000"
                   placeholder="₹ Selling Price"
+                />
+              </div>
+            </div>
+            <div className="grid gap-4 sm:grid-cols-2">
+              <div className="grid gap-2">
+                <Label htmlFor="totalBooks">
+                  Total Stock <span>*</span>
+                </Label>
+                <Input
+                  id="totalBooks"
+                  onChange={handleChange}
+                  value={formData.totalBooks}
+                  type="number"
+                  min="1"
+                  max="1000"
+                  placeholder="Total number of books in stock"
+                  required
+                />
+              </div>
+              <div className="grid gap-2">
+                <Label htmlFor="publisher">
+                  Publisher <span>*</span>
+                </Label>
+                <Input
+                  id="publisher"
+                  onChange={handleChange}
+                  value={formData.publisher}
+                  type="text"
+                  minLength="10"
+                  maxLength="250"
+                  placeholder="Publisher name"
+                  required
                 />
               </div>
             </div>
             {/* File Inputs */}
             <div className="grid gap-2">
-              <Label htmlFor="bookCoverPicture">Book Cover Picture</Label>
+              <Label htmlFor="bookCoverPicture">
+                Book Cover Picture <span>*</span>
+              </Label>
               <FileInputComponent
                 id="bookCoverPicture"
                 onChange={handleCoverFileChange}
@@ -202,16 +260,21 @@ export function ListingFormComponent() {
               />
             </div>
             <div className="grid gap-2">
-              <Label htmlFor="bookOtherPictures">Other Book Pictures</Label>
+              <Label htmlFor="bookOtherPictures">
+                Other Book Pictures <span>*</span>
+              </Label>
               <FileInputComponent
                 id="bookOtherPictures"
                 onChange={handleOtherFileChange}
                 multiple
+                required
               />
             </div>
             {/* Text Areas */}
             <div className="grid gap-2">
-              <Label htmlFor="bookDescription">Book Description</Label>
+              <Label htmlFor="bookDescription">
+                Book Description <span>*</span>
+              </Label>
               <Textarea
                 id="bookDescription"
                 onChange={handleChange}
@@ -223,7 +286,9 @@ export function ListingFormComponent() {
               />
             </div>
             <div className="grid gap-2">
-              <Label htmlFor="authorDescription">Author Description</Label>
+              <Label htmlFor="authorDescription">
+                Author Description <span>*</span>
+              </Label>
               <Textarea
                 id="authorDescription"
                 onChange={handleChange}
@@ -231,6 +296,20 @@ export function ListingFormComponent() {
                 minLength="150"
                 maxLength="500"
                 placeholder="Provide a brief description of the author"
+                required
+              />
+            </div>
+            <div className="grid gap-2">
+              <Label htmlFor="publisherDescription">
+                Publisher Description <span>*</span>
+              </Label>
+              <Textarea
+                id="publisherDescription"
+                onChange={handleChange}
+                value={formData.publisherDescription}
+                minLength="150"
+                maxLength="500"
+                placeholder="Provide a brief description of the publisher"
                 required
               />
             </div>
@@ -279,6 +358,140 @@ export function ListingFormComponent() {
                   value={formData.countryOfOrigin}
                 />
               </div>
+            </div>
+            {/* Additional Input Fields */}
+            <div className="grid gap-4 sm:grid-cols-2">
+              <div className="grid gap-2">
+                <Label htmlFor="itemWeight">
+                  Item Weight <span>*</span>
+                </Label>
+                <Input
+                  id="itemWeight"
+                  onChange={handleChange}
+                  value={formData.itemWeight}
+                  type="number"
+                  placeholder="Weight in grams"
+                  required
+                />
+              </div>
+              <div className="grid gap-2">
+                <Label htmlFor="pages">
+                  Number of Pages <span>*</span>
+                </Label>
+                <Input
+                  id="pages"
+                  onChange={handleChange}
+                  value={formData.pages}
+                  type="number"
+                  min="10"
+                  max="5000"
+                  placeholder="Total pages"
+                  required
+                />
+              </div>
+            </div>
+            <div className="grid gap-4 sm:grid-cols-2">
+              <div className="grid gap-2">
+                <Label htmlFor="publicationDate">
+                  Publication Date <span>*</span>
+                </Label>
+                <Input
+                  id="publicationDate"
+                  onChange={handleChange}
+                  value={formData.publicationDate}
+                  type="date"
+                  required
+                  max={new Date().toISOString().split("T")[0]}
+                />
+              </div>
+              <div className="grid gap-2">
+                <Label htmlFor="initialReleaseDate">
+                  Initial Release Date <span>*</span>
+                </Label>
+                <Input
+                  id="initialReleaseDate"
+                  onChange={handleChange}
+                  value={formData.initialReleaseDate}
+                  type="date"
+                  required
+                  max={new Date().toISOString().split("T")[0]}
+                />
+              </div>
+            </div>
+            <div className="grid gap-4 sm:grid-cols-2">
+              <div className="grid gap-2">
+                <Label htmlFor="edition">Edition</Label>
+                <Input
+                  id="edition"
+                  onChange={handleChange}
+                  value={formData.edition}
+                  type="text"
+                  maxLength="20"
+                  placeholder="e.g., 1st Edition"
+                />
+              </div>
+              <div className="grid gap-2">
+                <Label htmlFor="dimensions">Dimensions</Label>
+                <Input
+                  id="dimensions"
+                  onChange={handleChange}
+                  value={formData.dimensions}
+                  type="text"
+                  maxLength="20"
+                  placeholder="e.g., 20 x 15 x 2 cm"
+                />
+              </div>
+            </div>
+            <div className="grid gap-4 sm:grid-cols-2">
+              <div className="grid gap-2">
+                <Label htmlFor="format">
+                  Format <span>*</span>
+                </Label>
+                <Input
+                  id="format"
+                  onChange={handleChange}
+                  value={formData.format}
+                  type="text"
+                  maxLength="20"
+                  placeholder="e.g., Hardcover, Paperback"
+                  required
+                />
+              </div>
+              <div className="grid gap-2">
+                <Label htmlFor="ageRange">Age Range</Label>
+                <Input
+                  id="ageRange"
+                  onChange={handleChange}
+                  value={formData.ageRange}
+                  type="text"
+                  maxLength="20"
+                  placeholder="e.g., 8-12 years"
+                />
+              </div>
+            </div>
+            <div className="grid gap-2">
+              <Label htmlFor="awards">Awards</Label>
+              <Input
+                id="awards"
+                onChange={handleChange}
+                value={formData.awards}
+                type="text"
+                minLength="1"
+                maxLength="30"
+                placeholder="Comma-separated list of award"
+              />
+            </div>
+            <div className="grid gap-2">
+              <Label htmlFor="tags">Tags</Label>
+              <Input
+                id="tags"
+                onChange={handleChange}
+                value={formData.tags}
+                type="text"
+                minLength="1"
+                maxLength="40"
+                placeholder="Comma-separated tags"
+              />
             </div>
             {/* Submit Button */}
             <Button

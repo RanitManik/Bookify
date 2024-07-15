@@ -33,7 +33,7 @@ export const BookDetailsComponent = ({ data, bookId }) => {
   };
 
   const renderTableRow = (property, value) => (
-    <tr className="m-0 border-t p-0">
+    <tr className="border-t">
       <td className="border px-4 py-2 text-left">{property}</td>
       <td className="border px-4 py-2 text-left">{value}</td>
     </tr>
@@ -41,14 +41,15 @@ export const BookDetailsComponent = ({ data, bookId }) => {
 
   return (
     <BackgroundComponent>
-      <div className="py-8 duration-200 animate-in fade-in md:grid md:grid-cols-[450px,_auto] md:gap-4 md:px-4">
-        <div className="mx-auto mb-10 w-fit md:mb-0 md:ml-12">
+      <div className="py-12 duration-200 animate-in fade-in md:grid md:grid-cols-[500px,_auto] md:gap-4 md:px-4">
+        <div className="mx-auto mb-10 w-fit md:mb-0 md:ml-20">
           <div className="md:fixed">
             <Carousel
               plugins={[plugin.current]}
               className="w-full max-w-xs"
               onMouseEnter={plugin.current.stop}
               onMouseLeave={plugin.current.reset}
+              aria-label="Book Images Carousel"
             >
               <CarouselContent>
                 {imgUrls.length > 0 ? (
@@ -60,7 +61,7 @@ export const BookDetailsComponent = ({ data, bookId }) => {
                             <div className="h-[420px] w-[300px] bg-muted">
                               <img
                                 src={url}
-                                alt={data.name}
+                                alt={`${data.name} image ${index + 1}`}
                                 className="m-auto h-full max-w-full select-none object-contain"
                               />
                             </div>
@@ -83,10 +84,10 @@ export const BookDetailsComponent = ({ data, bookId }) => {
                   </CarouselItem>
                 )}
               </CarouselContent>
-              <CarouselPrevious />
-              <CarouselNext />
+              <CarouselPrevious aria-label="Previous image" />
+              <CarouselNext aria-label="Next image" />
             </Carousel>
-            <Button className="my-4 w-full" onClick={handlePlaceOrder}>
+            <Button className="my-4 w-full" onClick={handlePlaceOrder} aria-label="Place order">
               Buy Now
             </Button>
           </div>
@@ -104,13 +105,13 @@ export const BookDetailsComponent = ({ data, bookId }) => {
           <div>
             <span
               className="text-lg line-through opacity-70"
-              aria-label="MRP price"
+              aria-label="Maximum Retail Price"
             >
               Rs. {data?.maxRetailPrice}
             </span>
             <h3
               className="inline px-2 text-3xl text-foreground"
-              aria-label="selling price"
+              aria-label="Final Price"
             >
               ₹{data?.finalPrice}
             </h3>
@@ -127,12 +128,41 @@ export const BookDetailsComponent = ({ data, bookId }) => {
             )}
           </div>
 
+          <div className="my-6 w-full overflow-y-auto">
+            <table className="w-full">
+              <thead>
+              <tr className="border-t bg-muted">
+                <th className="border px-4 py-2 text-left font-bold">
+                  Property
+                </th>
+                <th className="border px-4 py-2 text-left font-bold">
+                  Value
+                </th>
+              </tr>
+              </thead>
+              <tbody>
+              {data?.isbn10 && renderTableRow("ISBN 10", data.isbn10)}
+              {data?.isbn13 && renderTableRow("ISBN 13", data.isbn13)}
+              {data?.category && renderTableRow("Book Category", data.category)}
+              {data?.condition && renderTableRow("Condition", data.condition)}
+              {data?.language && renderTableRow("Language", data.language)}
+              {data?.countryOfOrigin && renderTableRow("Country of Origin", data.countryOfOrigin)}
+              {data?.totalBooks && renderTableRow("Total Stock Left", data.totalBooks)}
+              {data?.edition && renderTableRow("Edition", data.edition)}
+              {data?.dimensions && renderTableRow("Dimensions", data.dimensions)}
+              {data?.format && renderTableRow("Format", data.format)}
+              {data?.ageRange && renderTableRow("Age Range", data.ageRange)}
+              {data?.awards && renderTableRow("Awards", data.awards)}
+              </tbody>
+            </table>
+          </div>
+
           {data?.bookDescription && (
             <>
-              <h2 className="mt-8 scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0">
+              <h2 className="mt-8 scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight">
                 Description
               </h2>
-              <p className="leading-7 [&:not(:first-child)]:mt-4">
+              <p className="leading-7 mt-4">
                 {data.bookDescription}
               </p>
             </>
@@ -140,39 +170,25 @@ export const BookDetailsComponent = ({ data, bookId }) => {
 
           {data?.authorDescription && (
             <>
-              <h2 className="mt-8 scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0">
+              <h2 className="mt-8 scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight">
                 About the Author
               </h2>
-              <p className="leading-7 [&:not(:first-child)]:mt-4">
+              <p className="leading-7 mt-4">
                 {data.authorDescription}
               </p>
             </>
           )}
 
-          <div className="my-6 w-full overflow-y-auto">
-            <table className="w-full">
-              <thead>
-                <tr className="m-0 border-t bg-muted p-0">
-                  <th className="border px-4 py-2 text-left font-bold">
-                    Property
-                  </th>
-                  <th className="border px-4 py-2 text-left font-bold">
-                    Value
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {data?.isbn10 && renderTableRow("ISBN 10", data.isbn10)}
-                {data?.isbn13 && renderTableRow("ISBN 13", data.isbn13)}
-                {data?.category &&
-                  renderTableRow("Book Category", data.category)}
-                {data?.condition && renderTableRow("Condition", data.condition)}
-                {data?.language && renderTableRow("Language", data.language)}
-                {data?.countryOfOrigin &&
-                  renderTableRow("Country of Origin", data.countryOfOrigin)}
-              </tbody>
-            </table>
-          </div>
+          {data?.publisherDescription && (
+            <>
+              <h2 className="mt-8 scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight">
+                About the Publisher
+              </h2>
+              <p className="leading-7 mt-4">
+                {data.publisherDescription}
+              </p>
+            </>
+          )}
         </div>
       </div>
     </BackgroundComponent>
