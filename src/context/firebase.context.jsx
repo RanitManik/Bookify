@@ -23,7 +23,6 @@ import {
   getFirestore,
   limit,
   query,
-  where,
   startAfter,
 } from "firebase/firestore";
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
@@ -156,9 +155,22 @@ export const FirebaseProvider = (props) => {
       // Get the newly created document ID
       const bookDocumentID = docRef.id;
 
+      const date = new Date();
+      const formattedDate = date
+        .toLocaleString("en-US", {
+          year: "numeric",
+          month: "2-digit",
+          day: "2-digit",
+          hour: "2-digit",
+          minute: "2-digit",
+          hour12: true,
+        })
+        .replace(/,/, "");
+
       // Add user listing reference to Firestore
       await addDoc(collection(firestore, `users/${user.uid}/booksCreated`), {
         bookDocumentID,
+        createdAt: formattedDate,
       });
 
       console.log("Listing created successfully");
@@ -227,23 +239,66 @@ export const FirebaseProvider = (props) => {
     return await getDoc(docRef);
   };
 
-  const placeOrder = async (bookId, qty) => {
+  const placeOrder = async (bookId) => {
     const collectionRef = collection(firestore, "books", bookId, "orders");
     const result = await addDoc(collectionRef, {
       userID: user.uid,
       userEmail: user.email,
       displayName: user.displayName,
       photoURL: user.photoURL,
-      quantity: qty,
     });
     console.log(result);
   };
 
   const fetchMyProducts = async () => {
     if (!user) return null;
-    const collectionRef = collection(firestore, "books");
-    const q = query(collectionRef, where("userID", "==", user.uid));
-    return await getDocs(q);
+    try {
+      const booksCreatedRef = collection(
+        firestore,
+        `users/${user.uid}/booksCreated`,
+      );
+      const booksCreatedSnapshot = await getDocs(booksCreatedRef);
+      if (booksCreatedSnapshot.empty) {
+        console.log("No books created by this user.");
+        return [];
+      }
+
+      const booksCreated = booksCreatedSnapshot.docs.map((doc) => doc.data());
+
+      const bookDetailsPromises = booksCreated.map(async (book) => {
+        const bookDocRef = doc(firestore, "books", book.bookDocumentID);
+        const bookDocSnapshot = await getDoc(bookDocRef);
+        if (!bookDocSnapshot.exists()) {
+          console.log(`Book with ID ${book.bookDocumentID} does not exist.`);
+          return null;
+        }
+
+        const ordersCollectionRef = collection(
+          firestore,
+          "books",
+          book.bookDocumentID,
+          "orders",
+        );
+
+        const ordersQuerySnapshot = await getDocs(ordersCollectionRef);
+
+        const orderCount = ordersQuerySnapshot.size;
+        console.log(orderCount);
+
+        return {
+          id: book.bookDocumentID,
+          createdAt: book.createdAt,
+          totalOrders: orderCount,
+          ...bookDocSnapshot.data(),
+        };
+      });
+
+      const bookDetails = await Promise.all(bookDetailsPromises);
+      return bookDetails.filter((book) => book !== null);
+    } catch (error) {
+      console.error("Error fetching user's products:", error.message);
+      return [];
+    }
   };
 
   const isLoggedIn = !!user;

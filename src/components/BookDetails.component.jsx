@@ -12,11 +12,13 @@ import {
 import Autoplay from "embla-carousel-autoplay";
 import { Card, CardContent } from "@/components/ui/card.jsx";
 import { Skeleton } from "@/components/ui/skeleton.jsx";
+import { Loader2 } from "lucide-react";
 
 export const BookDetailsComponent = ({ data, bookId }) => {
   const { getImageUrl, placeOrder } = useFirebase();
   const [imgUrls, setImgUrls] = useState([]);
   const plugin = useRef(Autoplay({ delay: 2000, stopOnInteraction: false }));
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const fetchImageUrls = async () => {
@@ -28,8 +30,15 @@ export const BookDetailsComponent = ({ data, bookId }) => {
     fetchImageUrls();
   }, [data, getImageUrl]);
 
-  const handlePlaceOrder = () => {
-    placeOrder(bookId, 1);
+  const handlePlaceOrder = async () => {
+    setLoading(true);
+    try {
+      await placeOrder(bookId);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const renderTableRow = (property, value) => (
@@ -41,9 +50,9 @@ export const BookDetailsComponent = ({ data, bookId }) => {
 
   return (
     <BackgroundComponent>
-      <div className="py-12 duration-200 animate-in fade-in md:grid md:grid-cols-[500px,_auto] md:gap-4 md:px-4">
-        <div className="mx-auto mb-10 w-fit md:mb-0 md:ml-20">
-          <div className="md:fixed">
+      <div className="py-8 duration-200 animate-in fade-in sm:py-12 lg:grid lg:grid-cols-[500px,_auto] lg:gap-4 lg:px-4">
+        <div className="mx-auto mb-10 w-fit lg:mb-0 lg:ml-20">
+          <div className="lg:fixed">
             <Carousel
               plugins={[plugin.current]}
               className="w-full max-w-xs"
@@ -87,17 +96,27 @@ export const BookDetailsComponent = ({ data, bookId }) => {
               <CarouselPrevious aria-label="Previous image" />
               <CarouselNext aria-label="Next image" />
             </Carousel>
-            <Button
-              className="my-4 w-full"
-              onClick={handlePlaceOrder}
-              aria-label="Place order"
-            >
-              Buy Now
-            </Button>
+            <div className="flex gap-4">
+              <Button
+                variant="outline"
+                className="my-4 w-full"
+                aria-label="Add to Cart"
+              >
+                Add to Cart
+              </Button>
+              <Button
+                variant="outline"
+                className="my-4 w-full"
+                onClick={handlePlaceOrder}
+                aria-label="Place order"
+              >
+                {loading ? <Loader2 className="animate-spin" /> : "Buy Now"}
+              </Button>
+            </div>
           </div>
         </div>
 
-        <div className="px-4 md:px-8">
+        <div className="px-4 lg:px-8">
           <div>
             <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
               {data?.name}
@@ -136,40 +155,41 @@ export const BookDetailsComponent = ({ data, bookId }) => {
             <p className="mt-4 leading-7">{data.bookDescription}</p>
           )}
 
-          <div className="my-6 w-full overflow-y-auto">
+          <div className="my-6">
             <h2 className="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight">
               Book Details
             </h2>
-            <table className="mt-4 w-full">
-              <thead>
-                <tr className="border-t bg-muted">
-                  <th className="border px-4 py-2 text-left font-bold">
-                    Property
-                  </th>
-                  <th className="border px-4 py-2 text-left font-bold">
-                    Details
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {data?.isbn10 && renderTableRow("ISBN 10", data.isbn10)}
-                {data?.isbn13 && renderTableRow("ISBN 13", data.isbn13)}
-                {data?.category &&
-                  renderTableRow("Book Category", data.category)}
-                {data?.condition && renderTableRow("Condition", data.condition)}
-                {data?.language && renderTableRow("Language", data.language)}
-                {data?.countryOfOrigin &&
-                  renderTableRow("Country of Origin", data.countryOfOrigin)}
-                {data?.totalBooks &&
-                  renderTableRow("Total Stock Left", data.totalBooks)}
-                {data?.edition && renderTableRow("Edition", data.edition)}
-                {data?.dimensions &&
-                  renderTableRow("Dimensions", data.dimensions)}
-                {data?.format && renderTableRow("Format", data.format)}
-                {data?.ageRange && renderTableRow("Age Range", data.ageRange)}
-                {data?.awards && renderTableRow("Awards", data.awards)}
-              </tbody>
-            </table>
+            <div className="w-full overflow-y-auto">
+              <table className="mt-4 w-full">
+                <thead>
+                  <tr className="border-t bg-muted">
+                    <th className="border px-4 py-2 text-left font-bold">
+                      Property
+                    </th>
+                    <th className="border px-4 py-2 text-left font-bold">
+                      Details
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {data?.isbn10 && renderTableRow("ISBN 10", data.isbn10)}
+                  {data?.isbn13 && renderTableRow("ISBN 13", data.isbn13)}
+                  {data?.category &&
+                    renderTableRow("Book Category", data.category)}
+                  {data?.condition &&
+                    renderTableRow("Condition", data.condition)}
+                  {data?.language && renderTableRow("Language", data.language)}
+                  {data?.countryOfOrigin &&
+                    renderTableRow("Country of Origin", data.countryOfOrigin)}
+                  {data?.edition && renderTableRow("Edition", data.edition)}
+                  {data?.dimensions &&
+                    renderTableRow("Dimensions", data.dimensions)}
+                  {data?.format && renderTableRow("Format", data.format)}
+                  {data?.ageRange && renderTableRow("Age Range", data.ageRange)}
+                  {data?.awards && renderTableRow("Awards", data.awards)}
+                </tbody>
+              </table>
+            </div>
           </div>
 
           {data?.authorDescription && (

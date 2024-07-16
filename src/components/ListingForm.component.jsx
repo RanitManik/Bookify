@@ -112,7 +112,7 @@ export function ListingFormComponent() {
   };
 
   return (
-    <div className="grid min-h-[min(90vh,_1080px)] place-items-center py-8 duration-200 animate-in fade-in">
+    <div className="grid min-h-[min(90vh,_1080px)] place-items-center px-4 py-8 duration-200 animate-in fade-in">
       <Card className="mx-auto w-full max-w-2xl">
         <CardHeader>
           <CardTitle className="text-2xl">List Your Book</CardTitle>
@@ -121,7 +121,7 @@ export function ListingFormComponent() {
         <CardContent>
           <form onSubmit={handleSubmit} className="grid gap-6">
             {/* Basic Information */}
-            <div className="grid gap-4 sm:grid-cols-2">
+            <div className="grid gap-6 sm:grid-cols-2">
               <div className="grid gap-2">
                 <Label htmlFor="name">
                   Book Name <span>*</span>
@@ -154,7 +154,7 @@ export function ListingFormComponent() {
               </div>
             </div>
             {/* ISBN and Prices */}
-            <div className="grid gap-4 sm:grid-cols-2">
+            <div className="grid gap-6 sm:grid-cols-2">
               <div className="grid gap-2">
                 <Label htmlFor="isbn10">
                   ISBN-10 <span>*</span>
@@ -184,7 +184,7 @@ export function ListingFormComponent() {
               </div>
             </div>
             {/* Other Details */}
-            <div className="grid gap-4 sm:grid-cols-2">
+            <div className="grid gap-6 sm:grid-cols-2">
               <div className="grid gap-2">
                 <Label htmlFor="maxRetailPrice">
                   Price (MRP) <span>*</span>
@@ -216,7 +216,7 @@ export function ListingFormComponent() {
                 />
               </div>
             </div>
-            <div className="grid gap-4 sm:grid-cols-2">
+            <div className="grid gap-6 sm:grid-cols-2">
               <div className="grid gap-2">
                 <Label htmlFor="totalBooks">
                   Total Stock <span>*</span>
@@ -241,8 +241,8 @@ export function ListingFormComponent() {
                   onChange={handleChange}
                   value={formData.publisher}
                   type="text"
-                  minLength="10"
-                  maxLength="250"
+                  minLength="1"
+                  maxLength="25"
                   placeholder="Publisher name"
                   required
                 />
@@ -280,7 +280,7 @@ export function ListingFormComponent() {
                 onChange={handleChange}
                 value={formData.bookDescription}
                 minLength="150"
-                maxLength="1000"
+                maxLength="400"
                 placeholder="Provide a brief description of the book"
                 required
               />
@@ -294,7 +294,7 @@ export function ListingFormComponent() {
                 onChange={handleChange}
                 value={formData.authorDescription}
                 minLength="150"
-                maxLength="1000"
+                maxLength="400"
                 placeholder="Provide a brief description of the author"
                 required
               />
@@ -308,13 +308,13 @@ export function ListingFormComponent() {
                 onChange={handleChange}
                 value={formData.publisherDescription}
                 minLength="150"
-                maxLength="1000"
+                maxLength="400"
                 placeholder="Provide a brief description of the publisher"
                 required
               />
             </div>
             {/* Selectors */}
-            <div className="grid gap-4 sm:grid-cols-2">
+            <div className="grid gap-6 sm:grid-cols-2">
               <div className="grid gap-2">
                 <Label htmlFor="category">Book Category</Label>
                 <CategorySelector
@@ -337,7 +337,7 @@ export function ListingFormComponent() {
               </div>
             </div>
             {/* Additional Details */}
-            <div className="grid gap-4 sm:grid-cols-2">
+            <div className="grid gap-6 sm:grid-cols-2">
               <div className="grid gap-2">
                 <Label htmlFor="language">Language</Label>
                 <LanguageSelector
@@ -360,7 +360,7 @@ export function ListingFormComponent() {
               </div>
             </div>
             {/* Additional Input Fields */}
-            <div className="grid gap-4 sm:grid-cols-2">
+            <div className="grid gap-6 sm:grid-cols-2">
               <div className="grid gap-2">
                 <Label htmlFor="itemWeight">
                   Item Weight <span>*</span>
@@ -390,7 +390,7 @@ export function ListingFormComponent() {
                 />
               </div>
             </div>
-            <div className="grid gap-4 sm:grid-cols-2">
+            <div className="grid gap-6 sm:grid-cols-2">
               <div className="grid gap-2">
                 <Label htmlFor="publicationDate">
                   Publication Date <span>*</span>
@@ -418,7 +418,7 @@ export function ListingFormComponent() {
                 />
               </div>
             </div>
-            <div className="grid gap-4 sm:grid-cols-2">
+            <div className="grid gap-6 sm:grid-cols-2">
               <div className="grid gap-2">
                 <Label htmlFor="edition">Edition</Label>
                 <Input
@@ -442,7 +442,7 @@ export function ListingFormComponent() {
                 />
               </div>
             </div>
-            <div className="grid gap-4 sm:grid-cols-2">
+            <div className="grid gap-6 sm:grid-cols-2">
               <div className="grid gap-2">
                 <Label htmlFor="format">
                   Format <span>*</span>
@@ -477,7 +477,7 @@ export function ListingFormComponent() {
                 value={formData.awards}
                 type="text"
                 minLength="1"
-                maxLength="30"
+                maxLength="20"
                 placeholder="Comma-separated list of award"
               />
             </div>
@@ -489,7 +489,7 @@ export function ListingFormComponent() {
                 value={formData.tags}
                 type="text"
                 minLength="1"
-                maxLength="40"
+                maxLength="30"
                 placeholder="Comma-separated tags"
               />
             </div>

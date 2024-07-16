@@ -2,7 +2,6 @@ import { useFirebase } from "@/context/firebase.context.jsx";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { ProductsComponent } from "@/components/Products.component.jsx";
-import BackgroundComponent from "@/components/Background.component.jsx";
 import { LoaderCircleComponent } from "@/components/LoaderCircle.component.jsx";
 
 export const ProductsRoute = () => {
@@ -21,11 +20,5 @@ export const ProductsRoute = () => {
 
   if (!user) return null;
 
-  return (
-    <>
-      <BackgroundComponent>
-        <ProductsComponent />
-      </BackgroundComponent>
-    </>
-  );
+  return <ProductsComponent />;
 };

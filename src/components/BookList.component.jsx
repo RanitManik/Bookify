@@ -5,7 +5,7 @@ import { LoaderCircleComponent } from "@/components/LoaderCircle.component.jsx";
 import { DataOfflineErrorComponent } from "@/components/DataOfflineError.component.jsx";
 import { NoBookDataErrorComponent } from "@/components/NoBookDataError.component.jsx";
 import { Button } from "@/components/ui/button.jsx";
-import { Loader2, ChevronDown } from "lucide-react";
+import { Loader2 } from "lucide-react";
 
 const BookListComponent = () => {
   const { getListBooks, resetPagination } = useFirebase();
@@ -103,7 +103,7 @@ const BookListComponent = () => {
   }
 
   return (
-    <main className="relative m-auto mb-20 flex flex-wrap items-stretch justify-center gap-x-4 gap-y-8 pb-20 pt-10 duration-200 animate-in fade-in slide-in-from-bottom-48 sm:max-w-[min(90%,_1200px)]">
+    <main className="relative m-auto mb-20 flex flex-wrap items-stretch justify-center gap-x-4 gap-y-8 px-4 py-8 pb-20 pt-10 duration-200 animate-in fade-in slide-in-from-bottom-48 sm:max-w-[min(90%,_1200px)] sm:px-6">
       {books.map((book) => (
         <CardForListedBooksComponent key={book.id} id={book.id} {...book} />
       ))}
@@ -116,7 +116,6 @@ const BookListComponent = () => {
         ) : (
           <Button onClick={fetchNextPage} disabled={!hasMore}>
             {hasMore ? "See More" : "No more books available"}
-            {hasMore ? <ChevronDown className="ml-2 h-4 w-4" /> : null}
           </Button>
         )}
       </div>
