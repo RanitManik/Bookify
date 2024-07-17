@@ -198,7 +198,8 @@ export const BookDetailsComponent = ({ data, bookId }) => {
                   {data?.dimensions &&
                     renderTableRow("Dimensions", data.dimensions)}
                   {data?.format && renderTableRow("Format", data.format)}
-                  {data?.ageRange && renderTableRow("Age Range", data.ageRange)}
+                  {data?.ageRange &&
+                    renderTableRow("Reading Age", data.ageRange)}
                   {data?.awards && renderTableRow("Awards", data.awards)}
                 </tbody>
               </table>

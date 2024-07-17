@@ -280,7 +280,7 @@ export function ListingFormComponent() {
                 onChange={handleChange}
                 value={formData.bookDescription}
                 minLength="150"
-                maxLength="1500"
+                maxLength="500"
                 placeholder="Provide a brief description of the book"
                 required
               />
@@ -294,7 +294,7 @@ export function ListingFormComponent() {
                 onChange={handleChange}
                 value={formData.authorDescription}
                 minLength="150"
-                maxLength="1500"
+                maxLength="500"
                 placeholder="Provide a brief description of the author"
                 required
               />
@@ -307,8 +307,8 @@ export function ListingFormComponent() {
                 id="publisherDescription"
                 onChange={handleChange}
                 value={formData.publisherDescription}
-                minLength="150"
-                maxLength="1500"
+                minLength="50"
+                maxLength="500"
                 placeholder="Provide a brief description of the publisher"
                 required
               />
@@ -458,7 +458,7 @@ export function ListingFormComponent() {
                 />
               </div>
               <div className="grid gap-2">
-                <Label htmlFor="ageRange">Age Range</Label>
+                <Label htmlFor="ageRange">Reading Age</Label>
                 <Input
                   id="ageRange"
                   onChange={handleChange}
