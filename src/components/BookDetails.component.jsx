@@ -13,6 +13,7 @@ import Autoplay from "embla-carousel-autoplay";
 import { Card, CardContent } from "@/components/ui/card.jsx";
 import { Skeleton } from "@/components/ui/skeleton.jsx";
 import { Loader2 } from "lucide-react";
+import mediumZoom from "medium-zoom";
 
 export const BookDetailsComponent = ({ data, bookId }) => {
   const { getImageUrl, placeOrder } = useFirebase();
@@ -72,6 +73,13 @@ export const BookDetailsComponent = ({ data, bookId }) => {
                                 src={url}
                                 alt={`${data.name} image ${index + 1}`}
                                 className="m-auto h-full max-w-full select-none object-contain"
+                                onLoad={(e) => {
+                                  mediumZoom(e.target, {
+                                    background: getComputedStyle(
+                                      document.documentElement,
+                                    ).getPropertyValue("--zoom-background"),
+                                  });
+                                }}
                               />
                             </div>
                           </CardContent>
@@ -96,23 +104,9 @@ export const BookDetailsComponent = ({ data, bookId }) => {
               <CarouselPrevious aria-label="Previous image" />
               <CarouselNext aria-label="Next image" />
             </Carousel>
-            <div className="flex gap-4">
-              <Button
-                variant="outline"
-                className="my-4 w-full"
-                aria-label="Add to Cart"
-              >
-                Add to Cart
-              </Button>
-              <Button
-                variant="outline"
-                className="my-4 w-full"
-                onClick={handlePlaceOrder}
-                aria-label="Place order"
-              >
-                {loading ? <Loader2 className="animate-spin" /> : "Buy Now"}
-              </Button>
-            </div>
+            <p className="mt-4 text-center leading-7 opacity-70">
+              click to open expand view
+            </p>
           </div>
         </div>
 
@@ -149,6 +143,23 @@ export const BookDetailsComponent = ({ data, bookId }) => {
                 %
               </span>
             )}
+          </div>
+
+          <div className="flex max-w-fit gap-4">
+            <Button
+              variant="secondary"
+              className="my-4 w-full px-8"
+              aria-label="Add to Cart"
+            >
+              Add to Cart
+            </Button>
+            <Button
+              className="my-4 w-full px-8"
+              onClick={handlePlaceOrder}
+              aria-label="Place order"
+            >
+              {loading ? <Loader2 className="animate-spin" /> : "Buy Now"}
+            </Button>
           </div>
 
           {data?.bookDescription && (

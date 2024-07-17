@@ -13,3 +13,5 @@
 ## Website Functionalities
 - [x] Build Pagination for the Website
 - [ ] Implement a Search Feature
+- [ ] Increase the character size of the inputs and textarea
+- [ ] Make a Read More for all the description above limited characters
