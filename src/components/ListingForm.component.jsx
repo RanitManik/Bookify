@@ -227,7 +227,7 @@ export function ListingFormComponent() {
                   value={formData.totalBooks}
                   type="number"
                   min="1"
-                  max="1000"
+                  max="10000"
                   placeholder="Total number of books in stock"
                   required
                 />
@@ -280,7 +280,7 @@ export function ListingFormComponent() {
                 onChange={handleChange}
                 value={formData.bookDescription}
                 minLength="150"
-                maxLength="400"
+                maxLength="1500"
                 placeholder="Provide a brief description of the book"
                 required
               />
@@ -294,7 +294,7 @@ export function ListingFormComponent() {
                 onChange={handleChange}
                 value={formData.authorDescription}
                 minLength="150"
-                maxLength="400"
+                maxLength="1500"
                 placeholder="Provide a brief description of the author"
                 required
               />
@@ -308,7 +308,7 @@ export function ListingFormComponent() {
                 onChange={handleChange}
                 value={formData.publisherDescription}
                 minLength="150"
-                maxLength="400"
+                maxLength="1500"
                 placeholder="Provide a brief description of the publisher"
                 required
               />
@@ -426,7 +426,7 @@ export function ListingFormComponent() {
                   onChange={handleChange}
                   value={formData.edition}
                   type="text"
-                  maxLength="20"
+                  maxLength="35"
                   placeholder="e.g., 1st Edition"
                 />
               </div>
@@ -437,7 +437,7 @@ export function ListingFormComponent() {
                   onChange={handleChange}
                   value={formData.dimensions}
                   type="text"
-                  maxLength="20"
+                  maxLength="35"
                   placeholder="e.g., 20 x 15 x 2 cm"
                 />
               </div>
@@ -452,7 +452,7 @@ export function ListingFormComponent() {
                   onChange={handleChange}
                   value={formData.format}
                   type="text"
-                  maxLength="20"
+                  maxLength="35"
                   placeholder="e.g., Hardcover, Paperback"
                   required
                 />
@@ -464,7 +464,7 @@ export function ListingFormComponent() {
                   onChange={handleChange}
                   value={formData.ageRange}
                   type="text"
-                  maxLength="20"
+                  maxLength="35"
                   placeholder="e.g., 8-12 years"
                 />
               </div>
@@ -477,7 +477,7 @@ export function ListingFormComponent() {
                 value={formData.awards}
                 type="text"
                 minLength="1"
-                maxLength="20"
+                maxLength="35"
                 placeholder="Comma-separated list of award"
               />
             </div>
@@ -489,7 +489,7 @@ export function ListingFormComponent() {
                 value={formData.tags}
                 type="text"
                 minLength="1"
-                maxLength="30"
+                maxLength="35"
                 placeholder="Comma-separated tags"
               />
             </div>

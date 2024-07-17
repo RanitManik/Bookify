@@ -104,13 +104,13 @@ export const BookDetailsComponent = ({ data, bookId }) => {
               <CarouselPrevious aria-label="Previous image" />
               <CarouselNext aria-label="Next image" />
             </Carousel>
-            <p className="mt-4 text-center leading-7 opacity-70">
+            <p className="mt-2 text-center leading-7 opacity-70 lg:mt-4">
               click to open expand view
             </p>
           </div>
         </div>
 
-        <div className="px-4 lg:px-8">
+        <div className="px-6 lg:px-8">
           <div>
             <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
               {data?.name}
