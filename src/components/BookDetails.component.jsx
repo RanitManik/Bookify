@@ -162,6 +162,8 @@ export const BookDetailsComponent = ({ data, bookId }) => {
             </Button>
           </div>
 
+          <hr />
+
           {data?.bookDescription && (
             <p className="mt-4 leading-7">{data.bookDescription}</p>
           )}

@@ -30,10 +30,10 @@ export function CardForListedBooksComponent(book) {
   return (
     <Card className="max-w-[350px] overflow-hidden">
       <div
-        className={`h-[250px] w-full bg-muted/60 object-contain p-2 sm:p-4 ${url ? "" : "animate-pulse"}`}
+        className={`h-[250px] w-full bg-muted/60 p-2 sm:p-4 ${url ? "" : "animate-pulse"}`}
       >
         <img
-          className="m-auto h-full"
+          className="m-auto h-full object-contain"
           src={url}
           alt={!url ? "" : "Book Image"}
         />

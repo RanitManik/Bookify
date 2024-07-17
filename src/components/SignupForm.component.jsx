@@ -44,7 +44,7 @@ export function SignupFormComponent() {
   };
 
   return (
-    <div className="grid min-h-[min(95svh,_1080px)] place-items-center duration-200 animate-in fade-in">
+    <div className="grid min-h-[min(95svh,_1080px)] place-items-center px-4 duration-200 animate-in fade-in">
       <Card className="mx-auto w-full max-w-sm self-center">
         <CardHeader>
           <CardTitle className="text-xl">Sign Up</CardTitle>
