@@ -5,7 +5,7 @@
 ![GitHub Discussions](https://img.shields.io/github/discussions/RanitManik/Bookify)
 ![GitHub License](https://img.shields.io/github/license/RanitManik/Bookify)
 ![Netlify Status](https://api.netlify.com/api/v1/badges/ec026107-913c-4f7b-a3b9-ea809a6da7f7/deploy-status)
-![wakatime](https://wakatime.com/badge/user/6c66cc47-ce26-48cc-a555-22494865c546/project/0b1b7bbf-67ee-436f-8f96-65ff67bebabd.svg)
+![wakatime](https://wakatime.com/badge/github/RanitManik/Bookify.svg)
 
 Welcome to **Bookify**! This project harnesses the capabilities of **Firebase** and **React** to provide a seamless platform for book transactions, featuring an interactive and modern design for an enhanced user experience.
 
