@@ -1,6 +1,6 @@
 <div align="center">
     
-<img height="70px" src="https://github.com/user-attachments/assets/72ee3b34-a62f-49a5-b175-f99b67828175" alt="">
+<img height="80px" src="https://github.com/user-attachments/assets/deefdc86-594b-4c2a-b3e9-dc8a036c83ee" alt="">
 
 <h1>Bookify</h1>
 
