@@ -1,11 +1,20 @@
+<div align="center">
+    
+<img height="70px" src="https://github.com/user-attachments/assets/72ee3b34-a62f-49a5-b175-f99b67828175" alt="">
+
 <h1>Bookify</h1>
 
 ![GitHub Created At](https://img.shields.io/github/created-at/RanitManik/Bookify)
 ![GitHub repo size](https://img.shields.io/github/repo-size/RanitManik/Bookify)
 ![GitHub Discussions](https://img.shields.io/github/discussions/RanitManik/Bookify)
 ![GitHub License](https://img.shields.io/github/license/RanitManik/Bookify)
+![GitHub stars](https://img.shields.io/github/stars/RanitManik/Bookify?style=default)
+![GitHub forks](https://img.shields.io/github/forks/RanitManik/Bookify?style=default)
+<br/>
 ![Netlify Status](https://api.netlify.com/api/v1/badges/ec026107-913c-4f7b-a3b9-ea809a6da7f7/deploy-status)
 ![wakatime](https://wakatime.com/badge/github/RanitManik/Bookify.svg)
+
+</div>
 
 Welcome to **Bookify**! This project harnesses the capabilities of **Firebase** and **React** to provide a seamless platform for book transactions, featuring an interactive and modern design for an enhanced user experience.
 
@@ -126,36 +135,33 @@ The project structure is as follows:
 
 ```
 bookify/
-├── components.json
-├── index.html
-├── LICENSE
-├── package.json
-├── package-lock.json
-├── postcss.config.js
-├── public
-├── README.md
-├── src
-├── tailwind.config.js
-├── tsconfig.json
-├── tsconfig.node.json
-├── vercel.json
-└── vite.config.js
+├── docs/ # Project Documentation
+│   ├── firestore structure # Firestore database architecture
+├── public/ # Public static assets
+├── src/ # Main source code
+│   ├── assets/ # Application assets (e.g., images, icons)
+│   ├── components/ # Reusable React components
+│   │   ├── ui/ # UI components (e.g., buttons, forms)
+│   │   └── block/ # Custom reusable components
+│   ├── context/ # React contexts for state management
+│   ├── hooks/ # Custom React hooks
+│   ├── index.css # Global styles
+│   ├── App.jsx # Main application component
+│   └── main.jsx # Entry point for React application
+├── .env.example # Template for environment variables
+├── .gitignore # Files and directories to be ignored by Git
+├── .prettierrc # Prettier configuration file
+├── index.html # HTML template for the app
+├── LICENSE # License information
+├── package.json # Project dependencies and scripts
+├── package-lock.json # Lock file for dependencies
+├── postcss.config.js # PostCSS configuration
+├── README.md # Project documentation
+├── tailwind.config.js # Tailwind CSS configuration
+├── tsconfig.json # TypeScript configuration
+├── tsconfig.node.json # TypeScript configuration for Node.js
+└── vite.config.js # Vite configuration file
 ```
-
-- **components.json**: Configuration for components.
-- **index.html**: HTML template.
-- **LICENSE**: License information.
-- **package.json**: Project metadata and dependencies.
-- **package-lock.json**: Dependency lock file.
-- **postcss.config.js**: PostCSS configuration file.
-- **public/**: Contains static assets.
-- **README.md**: Project documentation.
-- **src/**: Contains the main source code for the React application.
-- **tailwind.config.js**: Tailwind CSS configuration file.
-- **tsconfig.json**: TypeScript configuration file.
-- **tsconfig.node.json**: Node-specific TypeScript configuration file.
-- **vercel.json**: Vercel deployment configuration file.
-- **vite.config.js**: Vite configuration file.
 
 ## Contributing
 
@@ -179,17 +185,44 @@ We welcome contributions to enhance the Bookify project. To contribute:
 
 ## Contact
 
-- **LinkedIn**: [Ranit Manik](https://www.linkedin.com/in/ranit-manik/)
-- **GitHub**: [RanitManik](https://github.com/RanitManik)
-- **Email**: [ranitmanik.dev@gmail.com](mailto:ranitmanik.dev@gmail.com)
+<table>
+  <tr>
+    <th></th>
+    <th>Social Media</th>
+    <th>Username</th>
+    <th>Link</th>
+  </tr>
+  <tr>
+    <td><img src="https://cdn4.iconfinder.com/data/icons/social-media-logos-6/512/112-gmail_email_mail-512.png" width="20" /></td>
+    <td>Email</td>
+    <td><code>ranitmanik.dev@gmail.com</code></td>
+    <td><a href="mailto:ranitmanik.dev@gmail.com" target="_blank">Email</a></td>
+  </tr>
+  <tr>
+    <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/LinkedIn_logo_initials.png/480px-LinkedIn_logo_initials.png" width="20" /></td>
+    <td>LinkedIn</td>
+    <td><code>Ranit Manik</code></td>
+    <td><a href="https://www.linkedin.com/in/ranit-manik/" target="_blank">LinkedIn</a></td>
+  </tr>
+  <tr>
+    <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/600px-Instagram_icon.png" width="20" /></td>
+    <td>Instagram</td>
+    <td><code>ranit_manik_</code></td>
+    <td><a href="https://www.instagram.com/ranit_manik_/" target="_blank">Instagram</a></td>
+  </tr>
+  <tr>
+    <td><img src="https://upload.wikimedia.org/wikipedia/commons/6/6c/Facebook_Logo_2023.png" width="20" /></td>
+    <td>Facebook</td>
+    <td><code>RanitKumarManik</code></td>
+    <td><a href="https://www.facebook.com/RanitKumarManik/" target="_blank">Facebook</a></td>
+</tr>
+</table>
 
 _Feel free to reach out if you have questions or just want to chat about web adventures!_
 
 ## Acknowledgments
 
-- [Piyush Garg's FirebaseContext with React Course](https://www.youtube.com/playlist?list=PLinedj3B30sCw8Qjrct1DRglx4hWQx83C)
-- [Markdown Badges](https://github.com/Ileriayo/markdown-badges)
-- [shields.io Badges](https://shields.io/)
+This project wouldn't be possible without the collaboration and resources of the developer community. Thanks to the community and tools like React and Firebase. Special appreciation goes to friends and family. I hope it inspires further learning.
 
 ---
 
