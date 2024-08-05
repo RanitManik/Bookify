@@ -3,6 +3,13 @@
 <img height="80px" src="https://github.com/user-attachments/assets/deefdc86-594b-4c2a-b3e9-dc8a036c83ee" alt="">
 
 <h1>Bookify</h1>
+<a href="https://bookify.ranitmanik.live">View Demo</a>
+·
+<a href=".github/ISSUE_TEMPLATE/bug_report.md">Report Bug</a>
+·
+<a href=".github/ISSUE_TEMPLATE/feature_request.md">Request Feature</a>
+<br/>
+<br/>
 
 ![GitHub Created At](https://img.shields.io/github/created-at/RanitManik/Bookify)
 ![GitHub repo size](https://img.shields.io/github/repo-size/RanitManik/Bookify)
