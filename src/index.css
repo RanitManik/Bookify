@@ -61,7 +61,7 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground relative min-h-svh;
   }
 
   input[type="number"]::-webkit-inner-spin-button,
@@ -69,8 +69,4 @@
     -webkit-appearance: none;
     margin: 0;
   }
-}
-
-*::selection {
-  @apply bg-muted text-accent;
 }
