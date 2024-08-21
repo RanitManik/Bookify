@@ -29,6 +29,7 @@ Welcome to **Bookify**! This project harnesses the capabilities of **Firebase** 
 
 - [Overview](#overview)
     - [What is Bookify?](#what-is-bookify)
+    - [Demo Video](#demo-video)
     - [Technologies Used](#technologies-used)
     - [Features](#features)
 - [Getting Started](#getting-started)
@@ -46,6 +47,11 @@ Welcome to **Bookify**! This project harnesses the capabilities of **Firebase** 
 ### What is Bookify?
 
  Bookify is designed with a focus on user experience and efficiency, utilizing **Firestore** for robust and scalable data storage. As a serverless application, Bookify offers unparalleled flexibility and scalability, making it an ideal choice for users seeking a modern and efficient book trading solution. Additionally, the integration of **shadcn** ensures a polished and dynamic user interface, enhancing the overall experience.
+
+ ### Demo Video
+
+https://github.com/user-attachments/assets/79a1843b-cb86-4822-9e58-47e95ea4e86f
+ 
 
 ### Technologies Used
 
